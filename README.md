@@ -24,12 +24,14 @@ Welcome to the Tetris Game project! This application is a fun implementation of 
 
 Below is the route structure for the application:
 
+```
 / // Landing Page
 /login // User login page
 /signup // User signup page
 /settings // User settings page
 /game // Tetris game page
 /chat // Chat component page
+```
 
 ## File Structure
 
