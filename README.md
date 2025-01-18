@@ -35,6 +35,7 @@ Below is the route structure for the application:
 
 Here’s an overview of the project's file structure:
 
+```
 /tetris-game
 ├── /public
 │ ├── index.html
@@ -58,7 +59,7 @@ Here’s an overview of the project's file structure:
 │ └── routes.js
 ├── package.json
 └── README.md
-
+```
 
 ## Installation
 
