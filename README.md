@@ -45,7 +45,7 @@ Here’s an overview of the project's file structure:
 ├── /src
 │ ├── /components
 │ │ ├── Chat.jsx
-│ │ ├── GameBoard.jsx
+│ │ ├── Game.jsx
 │ │ ├── Login.jsx
 │ │ ├── Signup.jsx
 │ │ ├── Settings.jsx
