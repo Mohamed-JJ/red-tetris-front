@@ -50,7 +50,7 @@ Here’s an overview of the project's file structure:
 |   |   |   └── page.tsx
 │   │   ├── /layout.tsx        // Layout for the application
 │   │   ├── /page.tsx          // Landing Page
-│   │   ├── /app.css          // the css file for the entire app
+│   │   ├── /global.css          // the css file for the entire app
 │   │   └── /Auth
 │   │   │   └── page.tsx       // Auth Page
 |   ├── /lib
