@@ -40,25 +40,21 @@ Here’s an overview of the project's file structure:
 ```
 /tetris-game
 ├── /public
-│ ├── index.html
-│ └── favicon.ico
-├── /src
-│ ├── /components
-│ │ ├── Chat.jsx
-│ │ ├── Game.jsx
-│ │ ├── Login.jsx
-│ │ ├── Signup.jsx
-│ │ ├── Settings.jsx
-│ │ └── LandingPage.jsx
-│ ├── /contexts
-│ │ └── AuthContext.jsx
-│ ├── /hooks
-│ │ └── useGameLogic.js
-│ ├── /styles
-│ │ └── App.css
-│ ├── App.jsx
-│ ├── index.js
-│ └── routes.js
+│   └── favicon.ico
+│   ├── /app
+│   │   ├── /dashboard
+│   │   │   ├── Game // the game folder which will contain its components and all its dependencies
+|   |   |   |   └── page.tsx
+│   │   │   ├── Settings // the setting folder which will contain all its components and its dependencies
+|   |   |   |   └── page.tsx
+|   |   |   └── page.tsx
+│   │   ├── /layout.tsx        // Layout for the application
+│   │   ├── /page.tsx          // Landing Page
+│   │   ├── /global.css          // the css file for the entire app
+│   │   └── /Auth
+│   │   │   └── page.tsx       // Auth Page
+|   ├── /lib
+|   |   └── utils.ts // helping function that will be used througout the application
 ├── package.json
 └── README.md
 ```
