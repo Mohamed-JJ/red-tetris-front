@@ -11,5 +11,14 @@ pipeline {
                 echo "hello world"
             }
         }
+        stage('Print Message') {
+            steps {
+                // script {
+                //     // Print message to the console
+                //     println 'Hello, Jenkins! This is a Groovy script.'
+                // }
+                echo "hello world"
+            }
+        }
     }
 }
