@@ -1,1 +1,15 @@
-
+// Jenkins Groovy script to print a message
+pipeline {
+    agent any
+    stages {
+        stage('Print Message') {
+            steps {
+                // script {
+                //     // Print message to the console
+                //     println 'Hello, Jenkins! This is a Groovy script.'
+                // }
+                echo "hello world"
+            }
+        }
+    }
+}
