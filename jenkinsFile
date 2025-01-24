@@ -9,6 +9,7 @@ pipeline {
                 //     println 'Hello, Jenkins! This is a Groovy script.'
                 // }
                 echo "hello world"
+                
             }
         }
     }
