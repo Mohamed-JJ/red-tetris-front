@@ -1,25 +1,13 @@
-// Jenkins Groovy script to print a message
 pipeline {
-    agent any
+    agent {
+        docker { image 'node:22.13.1-alpine3.21' }
+    }
+
     stages {
-        stage('Print Message') {
+        stage('pulling') {
             steps {
-                // script {
-                //     // Print message to the console
-                //     println 'Hello, Jenkins! This is a Groovy script.'
-                // }
-                echo "hello world"
+                checkout scmGit(branches: [[name: '**']], extensions: [], userRemoteConfigs: [[credentialsId: 'a1cdc756-5418-437e-bbbf-ebe8d695f6a8', url: 'https://github.com/Mohamed-JJ/red-tetris-front']])
             }
-        }
-        stage('Print Message') {
-            steps {
-                // script {
-                //     // Print message to the console
-                //     println 'Hello, Jenkins! This is a Groovy script.'
-                // }
-                echo "hello world"
-            }
-            
         }
     }
 }
