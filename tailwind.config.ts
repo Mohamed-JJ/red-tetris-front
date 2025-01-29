@@ -14,7 +14,9 @@ const config: Config = {
   			foreground: 'hsl(var(--foreground))',
   			main: '#090E18',
 			  lighterblue: "#1F283C",
-
+			authInputBg: "#10191F",
+			authInputBorder: "#7E7575",
+			authPlaceHolderColor: "#848383",
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'

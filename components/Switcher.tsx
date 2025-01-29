@@ -35,6 +35,7 @@ const Switcher = ({
       gsap.to(bgRef.current, {
         x: isLogin ? '108%' : '0%',
         duration: 0.3,
+        ease: 'power2.out',
       });
     }
   };
@@ -52,10 +53,10 @@ const Switcher = ({
         className="absolute w-[140px] h-10 bg-lighterblue rounded-[14px] transition-all duration-100"
       />
       <div className={Child1Styles} onClick={() => handleToggle(false)}>
-        <p className={`${textStyles} z-10`}>{placeHolders[0]}</p>
+        <p className={textStyles}>{placeHolders[0]}</p>
       </div>
       <div className={Child2Styles} onClick={() => handleToggle(true)}>
-        <p className={`${textStyles} z-10`}>{placeHolders[1]}</p>
+        <p className={textStyles}>{placeHolders[1]}</p>
       </div>
     </div>
   );
