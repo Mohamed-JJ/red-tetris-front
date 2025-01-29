@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { bool } from 'three/tsl';
 
 export default function Home() {
-  const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
 
   const ToggleAuth = (arg: boolean) => {
     setIsLogin(arg);
@@ -30,11 +30,11 @@ export default function Home() {
           </div> */}
 
           <Switcher
-            placeHolders={['sign in', 'login']}
             textStyles="font-roboto text-[18px] font-semibold text-[#AAADFA] leading-5 hover:scale-105 duration-300"
+            placeHolders={['sign in', 'login']}
+            Child1Styles={`w-[140px] h-10 rounded-[14px] flex justify-center items-center hover:cursor-pointer`}
             Child2Styles={`ml-3 w-[140px] h-10 rounded-[14px] flex justify-center items-center hover:cursor-pointer`}
             ContainerStyles="w-[300px] h-12 bg-main rounded-[14px] flex items-center pl-1"
-            Child1Styles="w-[140px] h-10 bg-lighterblue rounded-[14px] flex justify-center items-center hover:cursor-pointer"
             onClick={ToggleAuth}
           />
         </div>
