@@ -1,5 +1,7 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { Metadata } from 'next';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import localFont from 'next/font/local';
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
