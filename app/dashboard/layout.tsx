@@ -1,4 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+import NavBar from '@/components/navBar';
 import type { Metadata } from 'next';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import localFont from 'next/font/local';
@@ -26,7 +27,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased w-screen h-screen bg-main`}>
+      <body className={`antialiased w-screen h-screen bg-main relative`}>
+        <NavBar />
         {children}
       </body>
     </html>

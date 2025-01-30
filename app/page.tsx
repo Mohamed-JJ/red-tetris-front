@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 export default function Home() {
   const router = useRouter();
   const handleRouting = () => {
-    router.push('/auth');
+    router.push('/dashboard');
   };
   return (
     <main className="w-full h-full flex flex-row justify-between">
