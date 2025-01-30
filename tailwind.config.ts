@@ -58,11 +58,11 @@ const config: Config = {
   		},
   		fontFamily: {
   			sans: [
-  				'DM Sans"',
+  				'DM Sans',
   				'ui-sans-serif',
   				'system-ui'
   			],roboto: [
-				'Roboto"',
+				'Roboto',
 				'ui-sans-serif',
 				'system-ui'
 			]

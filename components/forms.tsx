@@ -61,7 +61,11 @@ export const SignUpForm = () => {
             type={!showPassWord ? 'password' : 'text'}
             className="pl-3 bg-authInputBg w-full h-[62px] text-white border-2 border-authInputBorder rounded-[14px] placeholder:text-authPlaceHolderColor font-bold text-[18px] pr-[50px]" // Add padding-right to make space for the icon
             placeholder="password"
-            {...register('password', { required: true })}
+            {...register('password', {
+              required: true,
+              maxLength: 20,
+              minLength: 4,
+            })}
           />
           {!showPassWord ? (
             <FaEye
@@ -107,8 +111,8 @@ export const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      formState: { errors },
   } = useForm<LoginInput>();
   const [showPassWord, setShowPassword] = useState<boolean>(false);
 
