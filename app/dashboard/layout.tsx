@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import NavBar from '@/components/navBar';
-import type { Metadata } from 'next';
+// import type { Metadata } from 'next';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import localFont from 'next/font/local';
 
