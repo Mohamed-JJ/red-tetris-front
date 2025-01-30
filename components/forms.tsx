@@ -1,22 +1,33 @@
-import React, { FormEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { FaEye } from 'react-icons/fa';
 import { FaEyeSlash } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
 import { Si42 } from 'react-icons/si';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { LoginInput, SignUpInput } from '@/lib/types';
+
 export const SignUpForm = () => {
+  const {
+    register,
+    handleSubmit,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    watch,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    formState: { errors },
+  } = useForm<SignUpInput>();
   const [showPassWord, setShowPassword] = useState<boolean>(false);
 
   const ToggleShowPassWord = () => {
     setShowPassword(!showPassWord);
   };
-  const HandleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onSubmit: SubmitHandler<LoginInput> = (data) =>
+    console.log('the submitted data', data);
   return (
     <>
       <form
         action="submit"
-        onSubmit={HandleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-3"
       >
         <div className="w-full flex gap-5">
@@ -24,33 +35,33 @@ export const SignUpForm = () => {
             type="text"
             className="pl-3 bg-authInputBg text-white w-[199px] h-[62px] border-2 border-authInputBorder rounded-[14px] placeholder:text-authPlaceHolderColor text-[18px] font-bold"
             placeholder="first name"
-            required
+            {...register('firstName', { required: true })}
           />
           <input
             type="text"
             className="pl-3 bg-authInputBg text-white w-[199px] h-[62px] border-2 border-authInputBorder rounded-[14px] placeholder:text-authPlaceHolderColor text-[18px] font-bold"
             placeholder="last name"
-            required
+            {...register('lastName', { required: true })}
           />
         </div>
         <input
           type="text"
           className="pl-3 bg-authInputBg text-white h-[62px] border-2 border-authInputBorder rounded-[14px] placeholder:text-authPlaceHolderColor text-[18px] font-bold"
           placeholder="username"
-          required
+          {...register('userName', { required: true })}
         />
         <input
           type="email"
           className="pl-3 bg-authInputBg text-white h-[62px] border-2 border-authInputBorder rounded-[14px] text-[18px] placeholder:text-authPlaceHolderColor font-bold"
-          placeholder="emails"
-          required
+          placeholder="email"
+          {...register('email', { required: true })}
         />
         <div className="relative">
           <input
             type={!showPassWord ? 'password' : 'text'}
             className="pl-3 bg-authInputBg w-full h-[62px] text-white border-2 border-authInputBorder rounded-[14px] placeholder:text-authPlaceHolderColor font-bold text-[18px] pr-[50px]" // Add padding-right to make space for the icon
             placeholder="password"
-            required
+            {...register('password', { required: true })}
           />
           {!showPassWord ? (
             <FaEye
@@ -93,26 +104,32 @@ export const SignUpForm = () => {
 };
 
 export const LoginForm = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<LoginInput>();
   const [showPassWord, setShowPassword] = useState<boolean>(false);
 
   const ToggleShowPassWord = () => {
     setShowPassword(!showPassWord);
   };
-  const HandleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onSubmit: SubmitHandler<LoginInput> = (data) =>
+    console.log('the submitted data', data);
   return (
     <>
       <form
         action="submit"
-        onSubmit={HandleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-7 mt-3"
       >
         <input
           type="email"
           className="pl-3 w-[400px] bg-authInputBg text-white h-[62px] border-2 border-authInputBorder rounded-[14px] text-[18px] placeholder:text-authPlaceHolderColor font-bold"
-          placeholder="emails"
-          required
+          placeholder="email"
+          {...register('email', { required: true })}
         />
         <div className="relative">
           <input
@@ -120,6 +137,7 @@ export const LoginForm = () => {
             className="pl-3 bg-authInputBg w-full h-[62px] text-white border-2 border-authInputBorder rounded-[14px] placeholder:text-authPlaceHolderColor font-bold text-[18px] pr-[50px]" // Add padding-right to make space for the icon
             placeholder="password"
             required
+            {...register('password', { required: true })}
           />
           {!showPassWord ? (
             <FaEye
@@ -133,12 +151,16 @@ export const LoginForm = () => {
             />
           )}
         </div>
-        <p className='text-[#AAADFA] font-bold text-[18px] hover:cursor-pointer'>forgot password ?</p>
+        <p className="text-[#AAADFA] font-bold text-[18px] hover:cursor-pointer">
+          forgot password ?
+        </p>
         <button
           type="submit"
           className="w-[224px] h-[52px] rounded-[14px] bg-main mx-auto"
         >
-          <p className="text-[#AAADFA] font-bold text-[18px] hover:scale-105 duration-100">login</p>
+          <p className="text-[#AAADFA] font-bold text-[18px] hover:scale-105 duration-100">
+            login
+          </p>
         </button>
       </form>
       <div className="h-[2px] w-[507px] mx-auto bg-[#A59999] my-6"></div>
