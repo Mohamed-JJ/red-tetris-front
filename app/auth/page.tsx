@@ -1,8 +1,8 @@
 'use client';
-import { SignUpForm } from '@/components/forms';
+import { LoginForm, SignUpForm } from '@/components/forms';
 import Switcher from '@/components/Switcher';
 import ThreeDHero from '@/components/ThreeDHero';
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 
 export default function Home() {
   const [isLogin, setIsLogin] = useState<boolean>(false);
@@ -14,7 +14,7 @@ export default function Home() {
 
   return (
     <main className="w-full h-full flex flex-row">
-      <section className="w-1/2 h-full flex justify-center items-center">
+      <section className="ml-20 w-1/2 h-full flex justify-center items-center">
         <div className="w-[608px] h-[666px] bg-lighterblue rounded-[14px] flex flex-col gap-5 items-center py-6">
           <Switcher
             textStyles="font-roboto text-[18px] font-semibold text-[#AAADFA] leading-5 hover:scale-105 duration-300  z-10"
@@ -24,7 +24,7 @@ export default function Home() {
             ContainerStyles="w-[300px] h-12 bg-main rounded-[14px] flex items-center pl-1"
             onClick={ToggleAuth}
           />
-          <SignUpForm />
+          {isLogin ? <LoginForm /> : <SignUpForm />}
         </div>
       </section>
       <ThreeDHero />
