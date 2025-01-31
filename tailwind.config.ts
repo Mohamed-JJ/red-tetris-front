@@ -65,7 +65,8 @@ const config: Config = {
 				'Roboto',
 				'ui-sans-serif',
 				'system-ui'
-			]
+			],
+			jockey: ['Jockey One', 'sans-serif'],
   		},
   		keyframes: {
   			gradient: {
