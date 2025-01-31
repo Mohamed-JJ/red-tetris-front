@@ -78,3 +78,11 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.scrollable {
+  scrollbar-width: none; /* For Firefox */
+}
+
+.scrollable::-webkit-scrollbar {
+  display: none; /* Hides scrollbar in WebKit browsers */
+}
