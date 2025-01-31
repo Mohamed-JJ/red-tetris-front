@@ -31,19 +31,15 @@ const page = () => {
           </div>
         </div>
         <div className="bg-lighterblue h-[475px] flex items-center justify-center rounded-[16px]">
-          <p className="font-jockey text-[#AAADFA] text-[30px]">
-            what is tetris and how did it come to be?
-          </p>
+          <p className="font-jockey text-[#AAADFA] text-[30px]">Game pieces</p>
         </div>
         <div className="bg-lighterblue h-[475px] flex items-center justify-center rounded-[16px]">
           <p className="font-jockey text-[#AAADFA] text-[30px]">
-            what is tetris and how did it come to be?
+            Upcoming changes
           </p>
         </div>
         <div className="bg-lighterblue h-[475px] flex items-center justify-center rounded-[16px]">
-          <p className="font-jockey text-[#AAADFA] text-[30px]">
-            what is tetris and how did it come to be?
-          </p>
+          <p className="font-jockey text-[#AAADFA] text-[30px]">Game mode</p>
         </div>
       </div>
     </main>
