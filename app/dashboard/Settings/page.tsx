@@ -1,17 +1,19 @@
 'use client';
 
+import DisplayPersonalInfo from '@/components/DisplayPersonalInfo';
 import Switcher from '@/components/Switcher';
+import ViewInfoPlaceHolder from '@/components/ViewInfoPlaceHolder';
 import React, { useState } from 'react';
 import { div } from 'three/tsl';
 
 const Page = () => {
-  const [isView, setIsView] = useState(false);
+  const [isMod, setIsMod] = useState(false);
   const ToggleViewMod = (arg: boolean) => {
-    setIsView(arg);
+    setIsMod(arg);
     console.log('called with argument', arg);
   };
   return (
-    <div className="w-full h-full flex flex-col items-center border-2 pt-16 overflow-x-hidden gap-10">
+    <div className="w-full h-full flex flex-col items-center pt-16 overflow-x-hidden gap-10">
       <div className="w-[608px] h-[70px] bg-lighterblue rounded-[14px] flex  gap-5 items-center justify-center">
         <Switcher
           textStyles="font-roboto text-[18px] font-semibold text-[#AAADFA] leading-5 hover:scale-105 duration-300  z-10"
@@ -23,33 +25,11 @@ const Page = () => {
           customWidth="w-[190px]"
         />
       </div>
-      <div className="w-[708px] h-[450px] bg-lighterblue rounded-[14px] flex flex-col items-center gap-6">
-        <p className="font-jockey text-[#AAADFA] text-[30px] mt-5">
-          Personal Information
-        </p>
-        <div className="flex flex-col gap-5">
-          <div className="flex gap-5 font-jockey text-white">
-            <p className="w-[125px] text-center my-auto py-3 bg-dark rounded-[10px]">First name</p>
-            <p className="w-[400px] py-3 text-center my-auto bg-dark rounded-[10px]">some first name</p>
-          </div>
-          <div className="flex gap-5 font-jockey text-white">
-            <p className="w-[125px] text-center my-auto py-3 bg-dark rounded-[10px]">Last name</p>
-            <p className="w-[400px] py-3 text-center my-auto  bg-dark rounded-[10px]">some last name</p>
-          </div>
-          <div className="flex gap-5 font-jockey text-white">
-            <p className="w-[125px] text-center my-auto py-3 bg-dark rounded-[10px]">User-name</p>
-            <p className="w-[400px] py-3 text-center my-auto bg-dark rounded-[10px]">some username</p>
-          </div>
-          <div className="flex gap-5 font-jockey text-white">
-            <p className="w-[125px] text-center my-auto py-3 bg-dark rounded-[10px]">Email</p>
-            <p className="w-[400px] py-3 text-center my-auto bg-dark rounded-[10px]">some email</p>
-          </div>
-          <div className="flex gap-5 font-jockey text-white">
-            <p className="w-[125px] text-center my-auto py-3 bg-dark rounded-[10px]">password active</p>
-            <p className="w-[400px] py-3 text-center my-auto bg-dark rounded-[10px]">true/false</p>
-          </div>
-        </div>
-      </div>
+      {!isMod ? (
+        <DisplayPersonalInfo />
+      ) : (
+        <div className="text-white">nothing</div>
+      )}
     </div>
   );
 };
