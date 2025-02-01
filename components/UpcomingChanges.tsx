@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import React from 'react';
 import { ThreeDGame } from './3dAssets/ThreeDGame';
 import { Canvas } from '@react-three/fiber';
@@ -35,7 +34,7 @@ const UpcomingChanges = () => {
             </li>
           </ul>
           <p className="">
-            The changes aim to elevate the player's experience and bring the
+            The changes aim to elevate the player&apos;s experience and bring the
             game to life.
           </p>
         </div>

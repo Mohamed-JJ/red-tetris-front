@@ -12,6 +12,7 @@ const config: Config = {
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
+			dark: "#201E1E",
   			main: '#090E18',
 			  lighterblue: "#1F283C",
 			authInputBg: "#10191F",

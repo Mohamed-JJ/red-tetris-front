@@ -17,6 +17,7 @@ const Switcher = ({
   Child2Styles,
   textStyles,
   onClick,
+  customWidth,
 }: {
   placeHolders: string[];
   ContainerStyles: string;
@@ -24,6 +25,7 @@ const Switcher = ({
   Child2Styles: string;
   textStyles: string;
   onClick: (arg: boolean) => void;
+  customWidth?: string;
 }) => {
   const bgRef = useRef<HTMLDivElement>(null);
 
@@ -50,7 +52,7 @@ const Switcher = ({
     <div className={ContainerStyles}>
       <div
         ref={bgRef}
-        className="absolute w-[140px] h-10 bg-lighterblue rounded-[14px] transition-all duration-100"
+        className={`absolute ${customWidth ? customWidth : 'w-[140px]'} h-10 bg-lighterblue rounded-[14px] transition-all duration-100`}
       />
       <div className={Child1Styles} onClick={() => handleToggle(false)}>
         <p className={textStyles}>{placeHolders[0]}</p>
