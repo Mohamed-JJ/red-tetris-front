@@ -31,7 +31,7 @@ const NavBar = () => {
     );
   }
   return (
-    <main className="w-[450px] h-[80px] bg-[#AAADFA] absolute bottom-10 right-1/2 translate-x-1/2 rounded-[50px]">
+    <main className="w-[450px] h-[80px] bg-[#AAADFA] absolute bottom-10 right-1/2 translate-x-1/2 rounded-[50px] z-10">
       <div className="w-full h-full relative flex justify-around gap-10">
         <div className=" flex items-center gap-10">
           <div
@@ -63,7 +63,10 @@ const NavBar = () => {
         </div>
         <div className="size-[100px] -top-9 bg-[#AAADFA] absolute flex items-center justify-center right-1/2 translate-x-1/2 rounded-full">
           <div className="size-[65px] bg-main rounded-full  flex items-center justify-center">
-            <div className="size-24  hover:cursor-pointer hover:scale-105 duration-100" onClick={() => router.push('/dashboard')}>
+            <div
+              className="size-24  hover:cursor-pointer hover:scale-105 duration-100"
+              onClick={() => router.push('/dashboard')}
+            >
               <Canvas>
                 <Environment preset="city" />
                 <OrbitControls enableZoom={false} />
