@@ -2,9 +2,7 @@
 
 import DisplayPersonalInfo from '@/components/DisplayPersonalInfo';
 import Switcher from '@/components/Switcher';
-import ViewInfoPlaceHolder from '@/components/ViewInfoPlaceHolder';
 import React, { useState } from 'react';
-import { div } from 'three/tsl';
 
 const Page = () => {
   const [isMod, setIsMod] = useState(false);
