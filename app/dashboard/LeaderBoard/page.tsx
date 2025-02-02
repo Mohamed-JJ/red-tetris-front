@@ -1,92 +1,95 @@
 'use client';
 
+import PlayerInfo from '@/components/PlayerInfo';
+import UsageCard from '@/components/UsageCard';
+import { User } from '@/lib/types';
 import React, { useState } from 'react';
 import { AiTwotoneCrown } from 'react-icons/ai';
 
 const Page = () => {
-  const [player, setPlayer] = useState(null);
+  const [player, setPlayer] = useState<User | null>(null);
   const listOfPlayers = [
     {
-      username: 'something',
-      winrate: 50,
-      multiplayerMatches: 23,
-      singleplayerMatches: 30,
-      firstName: 'hmad',
-      lastName: 'l3afta',
+        username: 'player1',
+        winrate: 55,
+        multiplayerMatches: 30,
+        singleplayerMatches: 25,
+        firstName: 'Alice',
+        lastName: 'Smith',
     },
     {
-      username: 'something',
-      winrate: 50,
-      multiplayerMatches: 23,
-      singleplayerMatches: 30,
-      firstName: 'hmad',
-      lastName: 'l3afta',
+        username: 'player2',
+        winrate: 60,
+        multiplayerMatches: 20,
+        singleplayerMatches: 35,
+        firstName: 'Bob',
+        lastName: 'Johnson',
     },
     {
-      username: 'something',
-      winrate: 50,
-      multiplayerMatches: 23,
-      singleplayerMatches: 30,
-      firstName: 'hmad',
-      lastName: 'l3afta',
+        username: 'player3',
+        winrate: 45,
+        multiplayerMatches: 15,
+        singleplayerMatches: 40,
+        firstName: 'Charlie',
+        lastName: 'Williams',
     },
     {
-      username: 'something',
-      winrate: 50,
-      multiplayerMatches: 23,
-      singleplayerMatches: 30,
-      firstName: 'hmad',
-      lastName: 'l3afta',
+        username: 'player4',
+        winrate: 70,
+        multiplayerMatches: 25,
+        singleplayerMatches: 30,
+        firstName: 'Diana',
+        lastName: 'Jones',
     },
     {
-      username: 'something',
-      winrate: 50,
-      multiplayerMatches: 23,
-      singleplayerMatches: 30,
-      firstName: 'hmad',
-      lastName: 'l3afta',
+        username: 'player5',
+        winrate: 65,
+        multiplayerMatches: 18,
+        singleplayerMatches: 22,
+        firstName: 'Ethan',
+        lastName: 'Brown',
     },
     {
-      username: 'something',
-      winrate: 50,
-      multiplayerMatches: 23,
-      singleplayerMatches: 30,
-      firstName: 'hmad',
-      lastName: 'l3afta',
+        username: 'player6',
+        winrate: 50,
+        multiplayerMatches: 20,
+        singleplayerMatches: 30,
+        firstName: 'Fiona',
+        lastName: 'Davis',
     },
     {
-      username: 'something',
-      winrate: 50,
-      multiplayerMatches: 23,
-      singleplayerMatches: 30,
-      firstName: 'hmad',
-      lastName: 'l3afta',
+        username: 'player7',
+        winrate: 40,
+        multiplayerMatches: 10,
+        singleplayerMatches: 50,
+        firstName: 'George',
+        lastName: 'Miller',
     },
     {
-      username: 'something',
-      winrate: 50,
-      multiplayerMatches: 23,
-      singleplayerMatches: 30,
-      firstName: 'hmad',
-      lastName: 'l3afta',
+        username: 'player8',
+        winrate: 75,
+        multiplayerMatches: 35,
+        singleplayerMatches: 15,
+        firstName: 'Hannah',
+        lastName: 'Wilson',
     },
     {
-      username: 'something',
-      winrate: 50,
-      multiplayerMatches: 23,
-      singleplayerMatches: 30,
-      firstName: 'hmad',
-      lastName: 'l3afta',
+        username: 'player9',
+        winrate: 80,
+        multiplayerMatches: 40,
+        singleplayerMatches: 20,
+        firstName: 'Ian',
+        lastName: 'Moore',
     },
     {
-      username: 'something',
-      winrate: 50,
-      multiplayerMatches: 23,
-      singleplayerMatches: 30,
-      firstName: 'hmad',
-      lastName: 'l3afta',
+        username: 'player10',
+        winrate: 55,
+        multiplayerMatches: 28,
+        singleplayerMatches: 32,
+        firstName: 'Julia',
+        lastName: 'Taylor',
     },
-  ];
+];
   return (
     <div className="h-full flex justify-center items-center gap-16">
       <div className="w-[708px] h-[600px] bg-lighterblue rounded-[14px] flex flex-col items-center gap-6">
@@ -106,7 +109,10 @@ const Page = () => {
                     {key + 1}
                   </p>
                 )}
-                <p className="flex justify-center items-center w-[400px] h-[40px] text-center my-auto bg-dark rounded-full hover:scale-105 duration-100" onClick={()=>setPlayer(value)}>
+                <p
+                  className="flex justify-center items-center w-[400px] h-[40px] text-center my-auto bg-dark rounded-full hover:scale-105 duration-100"
+                  onClick={() => setPlayer(value)}
+                >
                   {value.username}
                 </p>
               </div>
@@ -114,19 +120,7 @@ const Page = () => {
           })}
         </div>
       </div>
-      <div className="w-[708px] h-[600px] bg-lighterblue rounded-[14px] flex flex-col items-center gap-6">
-        <p className="font-jockey text-[30px] text-[#AAADFA] mt-2">
-          how to use
-        </p>
-        <div>
-          <ul className="list-disc font-jockey text-[30px] text-white pt-28">
-            <li>click on a player on the leader board</li>
-            <li>view how many matches they played in PvP</li>
-            <li>view how many matches they played in single mode</li>
-            <li>view their win rate</li>
-          </ul>
-        </div>
-      </div>
+      {player ? <PlayerInfo player={player} /> : <UsageCard />}
     </div>
   );
 };
