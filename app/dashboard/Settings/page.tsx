@@ -1,6 +1,7 @@
 'use client';
 
 import DisplayPersonalInfo from '@/components/DisplayPersonalInfo';
+import ModifyPersonalInfo from '@/components/ModifyPersonalInfo';
 import Switcher from '@/components/Switcher';
 import React, { useState } from 'react';
 
@@ -23,11 +24,7 @@ const Page = () => {
           customWidth="w-[190px]"
         />
       </div>
-      {!isMod ? (
-        <DisplayPersonalInfo />
-      ) : (
-        <div className="text-white">nothing</div>
-      )}
+      {!isMod ? <DisplayPersonalInfo /> : <ModifyPersonalInfo />}
     </div>
   );
 };

@@ -10,3 +10,9 @@ export type SignUpInput = {
   email: string,
   password: string,
 };
+
+export type ModInformation = {
+  firstName?: string,
+  lastName?: string,
+  password?: string,
+};
