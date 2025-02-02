@@ -91,7 +91,7 @@ const Page = () => {
     },
 ];
   return (
-    <div className="h-full flex justify-center items-center gap-16">
+    <div className="h-full flex justify-center items-center gap-16 pb-24">
       <div className="w-[708px] h-[600px] bg-lighterblue rounded-[14px] flex flex-col items-center gap-6">
         <p className="font-jockey text-[30px] text-[#AAADFA] mt-2">
           leaderboard
