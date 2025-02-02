@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ViewInfoPlaceHolder from './ViewInfoPlaceHolder';
 import { ModInformation } from '@/lib/types';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import ModifyInfoValue from './ModifyInfoValue';
