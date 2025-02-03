@@ -18,10 +18,12 @@ export type ModInformation = {
 };
 
 export type User = {
-  username: string;
-  winrate: number;
-  multiplayerMatches: number;
-  singleplayerMatches: number;
   firstName: string;
   lastName: string;
+  username: string;
+  email:string;
+  passwordActive: boolean;
+  multiplayerMatches: number;
+  singleplayerMatches: number;
+  winrate: number;
 }
