@@ -21,8 +21,8 @@ export type User = {
   firstName: string;
   lastName: string;
   username: string;
-  email:string;
-  passwordActive: boolean;
+  email?:string;
+  passwordActive?: boolean;
   multiplayerMatches: number;
   singleplayerMatches: number;
   winrate: number;
