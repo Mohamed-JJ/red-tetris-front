@@ -18,6 +18,7 @@ export type ModInformation = {
 };
 
 export type User = {
+  id:number;
   firstName: string;
   lastName: string;
   username: string;
@@ -26,4 +27,10 @@ export type User = {
   multiplayerMatches: number;
   singleplayerMatches: number;
   winrate: number;
-}
+} 
+
+export type ShortUser = {
+  id?:number;
+  userName?: string;
+  signIn: boolean
+} 
