@@ -35,6 +35,13 @@ const ProfileCard = () => {
           value={user.multiplayerMatches.toString()}
         />
         <ViewInfoPlaceHolder name="winrate" value={user.winrate.toString()} />
+        <div className="hover:cursor-pointer transition-transform duration-100 w-full flex justify-end">
+          <p className="w-[125px] text-center my-auto py-3 bg-dark rounded-[10px] ">
+            <button className="text-red-500 justify-start text-[20px] font-jockey font-bold">
+              logout
+            </button>
+          </p>
+        </div>
       </div>
     </div>
   );

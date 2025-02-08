@@ -87,7 +87,10 @@ const ModifyPersonalInfo = () => {
             delete account
           </p>
 
-          <div className="hover:cursor-pointer transition-transform duration-100 flex h-full items-center ml-11" onClick={()=>console.log("will delete the account")}>
+          <div
+            className="hover:cursor-pointer transition-transform duration-100 flex h-full items-center ml-11"
+            onClick={() => console.log('will delete the account')}
+          >
             <BiTrash className="w-[40px] h-[40px] hover:cursor-pointer hover:scale-125 duration-100 text-red-600" />
           </div>
         </div>
