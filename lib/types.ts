@@ -1,5 +1,5 @@
 export type LoginInput = {
-  email: string,
+  userName: string,
   password: string,
 };
 

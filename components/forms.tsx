@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { FaEye } from 'react-icons/fa';
 import { FaEyeSlash } from 'react-icons/fa6';
@@ -5,23 +7,23 @@ import { FcGoogle } from 'react-icons/fc';
 import { Si42 } from 'react-icons/si';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { LoginInput, SignUpInput } from '@/lib/types';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { useDispatch, useSelector } from 'react-redux';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { RootState } from '@/app/state/store';
+import { setUser } from '@/app/state/user/userSlice';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import '@/utils';
 
 export const SignUpForm = () => {
-  const {
-    register,
-    handleSubmit,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    watch,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    formState: { errors },
-  } = useForm<SignUpInput>();
+  const { register, handleSubmit } = useForm<SignUpInput>();
   const [showPassWord, setShowPassword] = useState<boolean>(false);
 
   const ToggleShowPassWord = () => {
     setShowPassword(!showPassWord);
   };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit: SubmitHandler<LoginInput> = (data) =>
+  const onSubmit: SubmitHandler<SignUpInput> = (data) =>
     console.log('the submitted data', data);
   return (
     <>
@@ -108,11 +110,14 @@ export const SignUpForm = () => {
 };
 
 export const LoginForm = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const dispatch = useDispatch();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      formState: { errors },
+    formState: { errors },
   } = useForm<LoginInput>();
   const [showPassWord, setShowPassword] = useState<boolean>(false);
 
@@ -120,8 +125,29 @@ export const LoginForm = () => {
     setShowPassword(!showPassWord);
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit: SubmitHandler<LoginInput> = (data) =>
-    console.log('the submitted data', data);
+  const onSubmit: SubmitHandler<LoginInput> = async (data) => {
+    try {
+      console.log('the env is', process.env.NEXT_PUBLIC_BACKEND_URL);
+
+      const getLoggedUser = async () => {
+        return await axios.post('/passport-auth/login', {
+          userName: data.userName,
+          passWord: data.password,
+        });
+      };
+      const ret = await getLoggedUser();
+      console.log(ret.data)
+      dispatch(
+        setUser({ id: ret.data.id, signIn: true, userName: data.userName })
+      );
+      if (ret.status === 200) {
+        router.push('/dashboard');
+      }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      console.log('error in signing in');
+    }
+  };
   return (
     <>
       <form
@@ -130,10 +156,10 @@ export const LoginForm = () => {
         className="flex flex-col gap-7 mt-3"
       >
         <input
-          type="email"
+          type="text"
           className="pl-3 w-[400px] bg-authInputBg text-white h-[62px] border-2 border-authInputBorder rounded-[14px] text-[18px] placeholder:text-authPlaceHolderColor font-bold"
-          placeholder="email"
-          {...register('email', { required: true })}
+          placeholder="userName"
+          {...register('userName', { required: true })}
         />
         <div className="relative">
           <input
