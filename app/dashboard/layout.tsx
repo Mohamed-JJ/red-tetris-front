@@ -25,8 +25,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log('is good to go');
   return (
     <html lang="en">
+      
       <body className={`antialiased w-screen h-screen bg-main relative`}>
         <NavBar />
         {children}

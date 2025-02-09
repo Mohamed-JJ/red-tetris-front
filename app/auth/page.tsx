@@ -9,7 +9,6 @@ export default function Home() {
 
   const ToggleAuth = (arg: boolean) => {
     setIsLogin(arg);
-    console.log('called with argument', arg);
   };
 
   return (

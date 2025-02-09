@@ -9,7 +9,6 @@ const Page = () => {
   const [isMod, setIsMod] = useState(false);
   const ToggleViewMod = (arg: boolean) => {
     setIsMod(arg);
-    console.log('called with argument', arg);
   };
   return (
     <div className="w-full h-full flex flex-col items-center pt-16 overflow-x-hidden gap-10">

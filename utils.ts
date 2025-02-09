@@ -26,3 +26,18 @@ axios.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
+export const setToken=(token:string)=>{
+  localStorage.setItem("accessToken", token)
+}
+
+export const removeToken=()=>{
+  localStorage.removeItem("accessToken")
+}
+
+export const checkToken=()=>{
+  if (localStorage.getItem("accessToken"))
+    return true
+  return false
+}
+
