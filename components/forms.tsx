@@ -16,6 +16,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import '@/utils';
 import { setToken } from '@/utils';
+import { toast } from 'react-toastify';
 
 export const SignUpForm = () => {
   const { register, handleSubmit } = useForm<SignUpInput>();
@@ -114,6 +115,8 @@ export const LoginForm = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dispatch = useDispatch();
   const router = useRouter();
+  const notify = (arg: string) => toast(arg);
+
   const {
     register,
     handleSubmit,
@@ -137,7 +140,6 @@ export const LoginForm = () => {
         });
       };
       const ret = await getLoggedUser();
-      console.log(ret.data);
       setToken(ret.data.accessToken);
       dispatch(
         setUser({ id: ret.data.id, signIn: true, userName: data.userName })
@@ -147,7 +149,7 @@ export const LoginForm = () => {
       }
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      console.log('error in signing in');
+      notify('error in signing in');
     }
   };
   return (

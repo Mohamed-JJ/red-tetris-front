@@ -6,7 +6,6 @@ import { useState } from 'react';
 
 export default function Home() {
   const [isLogin, setIsLogin] = useState<boolean>(false);
-
   const ToggleAuth = (arg: boolean) => {
     setIsLogin(arg);
   };

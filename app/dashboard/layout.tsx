@@ -28,7 +28,6 @@ export default function RootLayout({
   console.log('is good to go');
   return (
     <html lang="en">
-      
       <body className={`antialiased w-screen h-screen bg-main relative`}>
         <NavBar />
         {children}

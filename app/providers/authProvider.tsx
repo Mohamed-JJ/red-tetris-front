@@ -1,3 +1,5 @@
+'use client';
+
 import React, { ReactNode, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../state/store';
@@ -9,21 +11,29 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const user = useSelector((state: RootState) => state.user);
   const router = useRouter();
 
-  if (!user.signIn) {
-    router.push('/auth');
-  }
-
-  const testAhtorization = () => {
+  const testAhtorization = async () => {
     const token = checkToken();
     if (!token) {
       return false;
     }
     try {
-      const res = await axios.post('/passport-auth/login');
-    } catch (error) {}
+      const res = await axios.get('/auth/me');
+      console.log(res);
+      return true;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log(error.message);
+      return false;
+    }
   };
+  useEffect(() => {
+    console.log('there at the auth wrapper');
+    if (!user.signIn || !testAhtorization()) {
+      router.push('/auth');
+    }
+  }, [user]);
 
-  return <div>{children}</div>;
+  return <>{children}</>;
 };
 
 export default AuthProvider;
