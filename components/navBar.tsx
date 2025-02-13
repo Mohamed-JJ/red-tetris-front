@@ -19,7 +19,6 @@ const NavBar = () => {
   const toggleIsMinimized = () => {
     setIsMinimized(!isMinimized);
   };
-  console.log('here in the navbar');
 
   if (isMinimized) {
     return (

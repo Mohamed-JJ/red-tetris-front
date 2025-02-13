@@ -25,8 +25,16 @@ export const SignUpForm = () => {
   const ToggleShowPassWord = () => {
     setShowPassword(!showPassWord);
   };
-  const onSubmit: SubmitHandler<SignUpInput> = (data) =>
-    console.log('the submitted data', data);
+  const onSubmit: SubmitHandler<SignUpInput> = async (data) => {
+    try {
+      // console.log('the submitted data', data);
+      const createdUser = await axios.post('/user', data);
+      console.log('created user', createdUser);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log('error occured at signup', error);
+    }
+  };
   return (
     <>
       <form
