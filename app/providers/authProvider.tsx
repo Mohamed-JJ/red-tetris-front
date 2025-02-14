@@ -1,15 +1,15 @@
 'use client';
 
-import React, { ReactNode, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../state/store';
-import { useRouter } from 'next/navigation';
-import { checkToken } from '@/utils';
-import axios from 'axios';
+import React, { ReactNode } from 'react';
+// import { useSelector } from 'react-redux';
+// import { RootState } from '../state/store';
+// import { useRouter } from 'next/navigation';
+// import { checkToken } from '@/utils';
+// import axios from 'axios';
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const user = useSelector((state: RootState) => state.user);
-  const router = useRouter();
+  // const user = useSelector((state: RootState) => state.user);
+  // const router = useRouter();
 
   // const testAhtorization = async () => {
   //   const token = checkToken();

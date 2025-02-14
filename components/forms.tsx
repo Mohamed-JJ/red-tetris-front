@@ -21,6 +21,7 @@ import { toast } from 'react-toastify';
 export const SignUpForm = () => {
   const { register, handleSubmit } = useForm<SignUpInput>();
   const [showPassWord, setShowPassword] = useState<boolean>(false);
+  const notify = (arg: string) => toast(arg);
 
   const ToggleShowPassWord = () => {
     setShowPassword(!showPassWord);
@@ -28,11 +29,15 @@ export const SignUpForm = () => {
   const onSubmit: SubmitHandler<SignUpInput> = async (data) => {
     try {
       // console.log('the submitted data', data);
+      console.log('created user', data);
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const createdUser = await axios.post('/user', data);
-      console.log('created user', createdUser);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      
+      notify('please go to the login page to login');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
     } catch (error: any) {
-      console.log('error occured at signup', error);
+      notify('error in creating an account');
     }
   };
   return (
@@ -73,7 +78,7 @@ export const SignUpForm = () => {
             type={!showPassWord ? 'password' : 'text'}
             className="pl-3 bg-authInputBg w-full h-[62px] text-white border-2 border-authInputBorder rounded-[14px] placeholder:text-authPlaceHolderColor font-bold text-[18px] pr-[50px]" // Add padding-right to make space for the icon
             placeholder="password"
-            {...register('password', {
+            {...register('passWord', {
               required: true,
               maxLength: 20,
               minLength: 4,

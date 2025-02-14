@@ -8,7 +8,7 @@ export type SignUpInput = {
   lastName: string,
   userName: string,
   email: string,
-  password: string,
+  passWord: string,
 };
 
 export type ModInformation = {

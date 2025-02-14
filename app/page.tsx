@@ -3,14 +3,27 @@
 import { CascadedCube } from '@/components/3dAssets/cube1/cascaded_cube';
 import GradientText from '@/components/GradientText';
 import ThreeDHero from '@/components/ThreeDHero';
+import { checkToken } from '@/utils';
 import { Environment, OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
+import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const router = useRouter();
   const handleRouting = () => {
-    router.push('/dashboard');
+    if (checkToken()) {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const tokenCheck = axios.get('/passport-auth/canAccess');
+        router.push('/dashboard');
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
+      } catch (error: any) {
+        router.push('/auth');
+      }
+    } else {
+      router.push('/auth');
+    }
   };
   return (
     <main className="w-full h-full flex flex-row justify-between">
