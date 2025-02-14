@@ -6,6 +6,8 @@ import GamePieces from '@/components/GamePieces';
 import UpcomingChanges from '@/components/UpcomingChanges';
 import GameModes from '@/components/GameModes';
 
+
+// this page needs to be responsive for all
 const Page = () => {
   // add a state variable that is going to change the game piece depending on its index in
 

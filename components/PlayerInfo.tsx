@@ -10,7 +10,7 @@ const PlayerInfo = ({ player }: { player: User }) => {
         name="name"
         value={`${player.firstName} ${player.lastName}`}
       />
-      <ViewInfoPlaceHolder name="username" value={`${player.username}`} />
+      <ViewInfoPlaceHolder name="username" value={`${player.userName}`} />
       <ViewInfoPlaceHolder
         name="matches played"
         value={`${player.multiplayerMatches + player.singleplayerMatches}`}

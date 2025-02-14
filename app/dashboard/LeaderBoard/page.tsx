@@ -2,16 +2,16 @@
 
 import PlayerInfo from '@/components/PlayerInfo';
 import UsageCard from '@/components/UsageCard';
-import { User } from '@/lib/types';
 import React, { useState } from 'react';
 import { AiTwotoneCrown } from 'react-icons/ai';
 
 const Page = () => {
-  const [player, setPlayer] = useState<User | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [player, setPlayer] = useState<any>();
   const listOfPlayers = [
     {
       id: 1,
-      username: 'player1',
+      userName: 'player1',
       winrate: 55,
       multiplayerMatches: 30,
       singleplayerMatches: 25,
@@ -21,7 +21,7 @@ const Page = () => {
     {
       id: 1,
 
-      username: 'player2',
+      userName: 'player2',
       winrate: 60,
       multiplayerMatches: 20,
       singleplayerMatches: 35,
@@ -30,7 +30,7 @@ const Page = () => {
     },
     {
       id: 1,
-      username: 'player3',
+      userName: 'player3',
       winrate: 45,
       multiplayerMatches: 15,
       singleplayerMatches: 40,
@@ -39,7 +39,7 @@ const Page = () => {
     },
     {
       id: 1,
-      username: 'player4',
+      userName: 'player4',
       winrate: 70,
       multiplayerMatches: 25,
       singleplayerMatches: 30,
@@ -47,7 +47,7 @@ const Page = () => {
       lastName: 'Jones',
     },
     {
-      username: 'player5',
+      userName: 'player5',
       id: 1,
       winrate: 65,
       multiplayerMatches: 18,
@@ -57,7 +57,7 @@ const Page = () => {
     },
     {
       id: 1,
-      username: 'player6',
+      userName: 'player6',
       winrate: 50,
       multiplayerMatches: 20,
       singleplayerMatches: 30,
@@ -65,7 +65,7 @@ const Page = () => {
       lastName: 'Davis',
     },
     {
-      username: 'player7',
+      userName: 'player7',
       id: 1,
       winrate: 40,
       multiplayerMatches: 10,
@@ -75,7 +75,7 @@ const Page = () => {
     },
     {
       id: 1,
-      username: 'player8',
+      userName: 'player8',
       winrate: 75,
       multiplayerMatches: 35,
       singleplayerMatches: 15,
@@ -84,7 +84,7 @@ const Page = () => {
     },
     {
       id: 1,
-      username: 'player9',
+      userName: 'player9',
       winrate: 80,
       multiplayerMatches: 40,
       singleplayerMatches: 20,
@@ -93,7 +93,7 @@ const Page = () => {
     },
     {
       id: 1,
-      username: 'player10',
+      userName: 'player10',
       winrate: 55,
       multiplayerMatches: 28,
       singleplayerMatches: 32,
@@ -124,7 +124,7 @@ const Page = () => {
                   className="flex justify-center items-center w-[400px] h-[40px] text-center my-auto bg-dark rounded-full hover:scale-105 duration-100"
                   onClick={() => setPlayer(value)}
                 >
-                  {value.username}
+                  {value.userName}
                 </p>
               </div>
             );

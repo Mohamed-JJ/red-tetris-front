@@ -1,9 +1,13 @@
+'use client';
+
 import React, { useState } from 'react';
 import { ModInformation } from '@/lib/types';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import ModifyInfoValue from './ModifyInfoValue';
 import { BiTrash } from 'react-icons/bi';
+import { toast } from 'react-toastify';
 const ModifyPersonalInfo = () => {
+  const notify = (args: string) => toast(args);
   const [isActive, setIsActive] = useState<{
     password?: boolean;
     firstName?: boolean;
@@ -48,12 +52,23 @@ const ModifyPersonalInfo = () => {
     }
   };
   const clearFields = () => {
+    console.log('clearing all the fields in the modify personal info');
     reset();
   };
   const onSubmit: SubmitHandler<ModInformation> = (data) => {
     console.log('the submitted data', data);
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      notify("couldn't update your personal information");
+    }
     // reset()
   };
+  const deleteAccount = async ()=>{
+    try {
+      const 
+    } catch (error : any) {}
+  }
   return (
     <div className="w-[708px] h-[500px] bg-lighterblue rounded-[14px] flex flex-col items-center gap-6">
       <p className="font-jockey text-[#AAADFA] text-[30px] mt-5">
@@ -89,7 +104,10 @@ const ModifyPersonalInfo = () => {
 
           <div
             className="hover:cursor-pointer transition-transform duration-100 flex h-full items-center ml-11"
-            onClick={() => console.log('will delete the account')}
+            onClick={(e) => {
+              e.preventDefault();
+              console.log('will delete the account');
+            }}
           >
             <BiTrash className="w-[40px] h-[40px] hover:cursor-pointer hover:scale-125 duration-100 text-red-600" />
           </div>
@@ -97,7 +115,10 @@ const ModifyPersonalInfo = () => {
         <div className="flex justify-between mt-10">
           <button
             className="py-3 w-[150px] rounded-[16px] font-jockey text-white bg-[#787878]"
-            onClick={clearFields}
+            onClick={(e) => {
+              e.preventDefault();
+              clearFields();
+            }}
           >
             cancel
           </button>

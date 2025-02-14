@@ -21,12 +21,13 @@ export type User = {
   id:number;
   firstName: string;
   lastName: string;
-  username: string;
+  userName: string;
   email?:string;
-  passwordActive?: boolean;
+  passWordActive?: boolean;
   multiplayerMatches: number;
   singleplayerMatches: number;
   winrate: number;
+  createdAt: Date;
 } 
 
 export type ShortUser = {

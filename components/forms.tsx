@@ -33,7 +33,7 @@ export const SignUpForm = () => {
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const createdUser = await axios.post('/user', data);
-      
+
       notify('please go to the login page to login');
       // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
     } catch (error: any) {
