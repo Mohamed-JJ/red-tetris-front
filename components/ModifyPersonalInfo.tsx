@@ -59,7 +59,6 @@ const ModifyPersonalInfo = () => {
     console.log('the submitted data', data);
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
-      
     } catch (error: any) {
       notify("couldn't update your personal information");
     }
