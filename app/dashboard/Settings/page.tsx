@@ -23,7 +23,7 @@ const Page = () => {
     const fetchUser = async () => {
       try {
         // fetch the user from the backend
-        const response = await axios.get(`user/1`);
+        const response = await axios.get(`user/${1}`);
         console.log(response.data); // Access the data from the response
         setUser(response.data);
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
@@ -31,7 +31,6 @@ const Page = () => {
         notify('Error in fetching the user');
       }
     };
-
     fetchUser(); // Call the function to fetch user data
   }, []);
 
@@ -40,11 +39,11 @@ const Page = () => {
   }, [isClient]);
   if (!isClient) return null;
   if (!user) {
-    
-    return <div className='flex w-full h-full justify-center items-center'>
-
-      <ReactLoading color="#fff" type="spin" height={100} width={100}  />;
-    </div>
+    return (
+      <div className="flex w-full h-full justify-center items-center">
+        <ReactLoading color="#fff" type="spin" height={100} width={100} />;
+      </div>
+    );
   }
   return (
     <div className="w-full h-full flex flex-col items-center pt-16 overflow-x-hidden gap-10">

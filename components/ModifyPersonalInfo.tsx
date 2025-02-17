@@ -6,7 +6,11 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import ModifyInfoValue from './ModifyInfoValue';
 import { BiTrash } from 'react-icons/bi';
 import { toast } from 'react-toastify';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { removeToken } from '@/utils';
 const ModifyPersonalInfo = () => {
+  const router = useRouter();
   const notify = (args: string) => toast(args);
   const [isActive, setIsActive] = useState<{
     password?: boolean;
@@ -55,21 +59,48 @@ const ModifyPersonalInfo = () => {
     console.log('clearing all the fields in the modify personal info');
     reset();
   };
+
+  // used to update the user info
   const onSubmit: SubmitHandler<ModInformation> = (data) => {
     console.log('the submitted data', data);
     try {
+      const updateUser = async () => {
+        // replace place holder value with actual id of the user
+        const ret = await axios.patch(`user/${1}`, data);
+        console.log('updated user', ret);
+        notify('updated your information successfully');
+      };
+      updateUser();
       // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
-      
     } catch (error: any) {
       notify("couldn't update your personal information");
     }
-    // reset()
   };
-  const deleteAccount = async ()=>{
+
+  // used to delete an account
+  const deleteAccount = async () => {
     try {
-      const 
-    } catch (error : any) {}
-  }
+      const deleteAcc = async () => {
+        // dont return the passowrd in the response to the deletee request
+        const res = await axios.delete(`/user/${1}`);
+        console.log(res.data);
+      };
+
+      // call the function to apply functionality
+      deleteAcc();
+
+      // redarect the user to the root (landing page)
+      router.push('/');
+
+      // delete the token of auth from the local storage
+      removeToken();
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error: unknown) {
+      // notify the user you couldn't complete the operation
+      notify("couldn't delete the account");
+    }
+  };
   return (
     <div className="w-[708px] h-[500px] bg-lighterblue rounded-[14px] flex flex-col items-center gap-6">
       <p className="font-jockey text-[#AAADFA] text-[30px] mt-5">
@@ -108,6 +139,7 @@ const ModifyPersonalInfo = () => {
             onClick={(e) => {
               e.preventDefault();
               console.log('will delete the account');
+              deleteAccount();
             }}
           >
             <BiTrash className="w-[40px] h-[40px] hover:cursor-pointer hover:scale-125 duration-100 text-red-600" />
