@@ -9,7 +9,7 @@ const UpcomingChanges = () => {
       <p className="font-jockey text-[#AAADFA] text-[30px] mt-9">
         Upcoming changes
       </p>
-      <div className="h-[90%] flex w-full px-14 justify-start text-[#A7A7A7]">
+      <div className="h-[90%] flex w-full px-14 justify-start text-[#A7A7A7] sm:text-[12px] lg:text-[16px]">
         <div>
           <br />
           <p className="font-jockey text-[#AAADFA] text-[30px] w-[300px]">
@@ -34,8 +34,8 @@ const UpcomingChanges = () => {
             </li>
           </ul>
           <p className="">
-            The changes aim to elevate the player&apos;s experience and bring the
-            game to life.
+            The changes aim to elevate the player&apos;s experience and bring
+            the game to life.
           </p>
         </div>
 

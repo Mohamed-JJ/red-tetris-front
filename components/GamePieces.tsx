@@ -25,31 +25,31 @@ const GamePieces = () => {
     setGamePiece((prev) => (prev - 1 + gamePieces.length) % gamePieces.length);
   };
   return (
-    <div className="bg-lighterblue h-[475px] w-full flex items-center justify-center rounded-[16px] flex-col gap-5 relative">
-      <p className="font-jockey text-[#AAADFA] text-[30px] -translate-y-[75px] absolute top-[100px]">
-        Game pieces
+    <div className="bg-lighterblue min-h-[534px]  w-full flex items-center justify-center rounded-[16px] flex-col gap-5 p-4 relative">
+      <p className="font-jockey text-[#AAADFA] text-[24px] md:text-[30px] -translate-y-[75px] absolute top-[100px]">
+        Game Pieces
       </p>
-      <div className="w-full flex justify-around items-center max-h-[225px]">
+      <div className="w-full flex flex-col md:flex-row justify-around items-center max-h-[225px]">
         <div
-          className="size-[50px] bg-[#AAADFA] flex items-center justify-center rounded-full hover:cursor-pointer"
+          className="bg-[#AAADFA] flex items-center justify-center rounded-full hover:cursor-pointer w-[50px] h-[50px]"
           onClick={decreaseGamePieceIndex}
         >
-          <BiSolidLeftArrowCircle className="text-[#666666] size-[30px]" />
+          <BiSolidLeftArrowCircle className="text-[#666666] text-[30px]" />
         </div>
         <div className="max-w-[150px] max-h-[225px] flex">
           <Image
             className="w-full h-full object-cover"
             src={gamePieces[gamePiece]}
-            alt="game piece"
+            alt="Game piece"
             width={150}
             height={200}
           />
         </div>
         <div
-          className="size-[50px] bg-[#AAADFA] flex items-center justify-center rounded-full hover:cursor-pointer"
+          className="bg-[#AAADFA] flex items-center justify-center rounded-full hover:cursor-pointer w-[50px] h-[50px]"
           onClick={increaseGamePieceIndex}
         >
-          <BiSolidRightArrowCircle className="text-[#666666] size-[30px] " />
+          <BiSolidRightArrowCircle className="text-[#666666] text-[30px]" />
         </div>
       </div>
     </div>
