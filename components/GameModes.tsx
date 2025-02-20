@@ -3,7 +3,7 @@ import React from 'react';
 
 const GameModes = () => {
   return (
-    <div className="bg-lighterblue h-[475px] flex items-center justify-between rounded-[16px] flex-col">
+    <div className="bg-lighterblue h-[475px] border-white border-2 w-full flex items-center justify-between rounded-[16px] flex-col">
       <p className="font-jockey text-[#AAADFA] text-[30px] mt-5">Game mode</p>
       <div className="flex mb-10 gap-28">
         <Image

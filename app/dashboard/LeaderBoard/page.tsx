@@ -2,113 +2,40 @@
 
 import PlayerInfo from '@/components/PlayerInfo';
 import UsageCard from '@/components/UsageCard';
-import React, { useState } from 'react';
+import { User } from '@/lib/types';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { AiTwotoneCrown } from 'react-icons/ai';
+import { toast } from 'react-toastify';
+import "@/utils"
 
 const Page = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [player, setPlayer] = useState<any>();
-  const listOfPlayers = [
-    {
-      id: 1,
-      userName: 'player1',
-      winrate: 55,
-      multiplayerMatches: 30,
-      singleplayerMatches: 25,
-      firstName: 'Alice',
-      lastName: 'Smith',
-    },
-    {
-      id: 1,
+  const notify = (args: string) => toast(args);
+  const [leaderBoardList, setLeaderBoardList] = useState<User[]>([]);
 
-      userName: 'player2',
-      winrate: 60,
-      multiplayerMatches: 20,
-      singleplayerMatches: 35,
-      firstName: 'Bob',
-      lastName: 'Johnson',
-    },
-    {
-      id: 1,
-      userName: 'player3',
-      winrate: 45,
-      multiplayerMatches: 15,
-      singleplayerMatches: 40,
-      firstName: 'Charlie',
-      lastName: 'Williams',
-    },
-    {
-      id: 1,
-      userName: 'player4',
-      winrate: 70,
-      multiplayerMatches: 25,
-      singleplayerMatches: 30,
-      firstName: 'Diana',
-      lastName: 'Jones',
-    },
-    {
-      userName: 'player5',
-      id: 1,
-      winrate: 65,
-      multiplayerMatches: 18,
-      singleplayerMatches: 22,
-      firstName: 'Ethan',
-      lastName: 'Brown',
-    },
-    {
-      id: 1,
-      userName: 'player6',
-      winrate: 50,
-      multiplayerMatches: 20,
-      singleplayerMatches: 30,
-      firstName: 'Fiona',
-      lastName: 'Davis',
-    },
-    {
-      userName: 'player7',
-      id: 1,
-      winrate: 40,
-      multiplayerMatches: 10,
-      singleplayerMatches: 50,
-      firstName: 'George',
-      lastName: 'Miller',
-    },
-    {
-      id: 1,
-      userName: 'player8',
-      winrate: 75,
-      multiplayerMatches: 35,
-      singleplayerMatches: 15,
-      firstName: 'Hannah',
-      lastName: 'Wilson',
-    },
-    {
-      id: 1,
-      userName: 'player9',
-      winrate: 80,
-      multiplayerMatches: 40,
-      singleplayerMatches: 20,
-      firstName: 'Ian',
-      lastName: 'Moore',
-    },
-    {
-      id: 1,
-      userName: 'player10',
-      winrate: 55,
-      multiplayerMatches: 28,
-      singleplayerMatches: 32,
-      firstName: 'Julia',
-      lastName: 'Taylor',
-    },
-  ];
+  useEffect(() => {
+    const fetchLeaderBoard = async () => {
+      try {
+        const res = await axios.get('user/leaderBoard');
+        console.log(res.data);
+        setLeaderBoardList(res.data);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (error: unknown) {
+        notify("error in fetching leaderBoard")
+      }
+    };
+    fetchLeaderBoard();
+  }, []);
   return (
     <div className="h-full flex justify-center items-center gap-16 pb-24">
       <div className="w-[708px] h-[600px] bg-lighterblue rounded-[14px] flex flex-col items-center gap-6">
         <p className="font-jockey text-[30px] text-[#AAADFA] mt-2">
           leaderboard
         </p>
-        <div className="flex flex-col overflow-x-auto max-h-[475px] gap-3 scrollable">
-          {listOfPlayers.map((value, key) => {
+        <div className="flex flex-col max-h-[475px] gap-3 scrollable">
+          {leaderBoardList.map((value, key) => {
             return (
               <div key={key} className="flex gap-5 font-jockey text-white">
                 {key === 0 ? (

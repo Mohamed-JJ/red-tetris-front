@@ -25,7 +25,7 @@ const GamePieces = () => {
     setGamePiece((prev) => (prev - 1 + gamePieces.length) % gamePieces.length);
   };
   return (
-    <div className="bg-lighterblue h-[475px] flex items-center justify-center rounded-[16px] flex-col gap-5 relative">
+    <div className="bg-lighterblue h-[475px] w-full flex items-center justify-center rounded-[16px] flex-col gap-5 relative">
       <p className="font-jockey text-[#AAADFA] text-[30px] -translate-y-[75px] absolute top-[100px]">
         Game pieces
       </p>

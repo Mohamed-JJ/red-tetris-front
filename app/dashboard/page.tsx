@@ -13,7 +13,8 @@ const Page = () => {
 
   return (
     <main className="w-full h-full scrollable overflow-x-hidden">
-      <div className="grid grid-cols-2 gap-x-44 gap-y-10 px-32 py-20">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-10 gap-y-10 px-4 md:px-20 lg:px-32 py-10 md:py-20">
+      {/* <div className="  grid grid-cols-2 gap-x-44 gap-y-10 px-32 py-20"> */}
         <WhatSection />
         <GamePieces />
         <UpcomingChanges />
