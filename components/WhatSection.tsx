@@ -44,12 +44,15 @@ const WhatSection = () => {
     const handleResize = () => {
       setSize({ width: window.innerWidth, height: window.innerHeight });
     };
-    window.addEventListener("resize", handleResize)
+    window.addEventListener('resize', handleResize);
   }, []);
 
   return (
-    <div className="bg-lighterblue h-auto flex flex-col gap-4 items-center justify-center rounded-[16px] p-4 md:p-8">
-      <p className="font-jockey text-[#AAADFA] text-[24px] md:text-[20px] lg:text-[30px] -translate-y-2 md:-translate-y-3">
+    <div className="bg-lighterblue h-auto flex flex-col gap-4 items-center justify-center rounded-[16px] p-4 md:p-8 lg:relative">
+      {/* <p className="font-jockey text-[#AAADFA] text-[24px] md:text-[20px] lg:text-[30px] -translate-y-2 md:-translate-y-3">
+        What is Tetris and how did it come to be?
+      </p> */}
+      <p className="font-jockey text-[#AAADFA] text-[24px] md:text-[30px] lg:absolute lg:top-[25px]">
         What is Tetris and how did it come to be?
       </p>
       <div className="flex flex-col md:flex-row px-4 md:px-16 gap-4 md:gap-16">

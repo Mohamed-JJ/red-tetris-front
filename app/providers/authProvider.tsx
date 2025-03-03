@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 // import { useSelector } from 'react-redux';
 // import { RootState } from '../state/store';
 // import { useRouter } from 'next/navigation';
@@ -8,6 +8,9 @@ import React, { ReactNode } from 'react';
 // import axios from 'axios';
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
+  useEffect(() => {
+    console.log('invoked the dashboard path');
+  }, []);
   // const user = useSelector((state: RootState) => state.user);
   // const router = useRouter();
 
