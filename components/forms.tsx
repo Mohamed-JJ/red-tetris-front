@@ -129,7 +129,6 @@ export const LoginForm = () => {
   const router = useRouter();
   const notify = (arg: string) => toast(arg);
 
-
   const {
     register,
     handleSubmit,
