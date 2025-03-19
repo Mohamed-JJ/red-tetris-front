@@ -27,7 +27,7 @@ const Page = () => {
     const fetchUser = async () => {
       try {
         // fetch the user from the backend
-        const response = await axios.get(`user/${1}`);
+        const response = await axios.get(`user/${usere.id}`);
         console.log(response.data); // Access the data from the response
         setUser(response.data);
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
