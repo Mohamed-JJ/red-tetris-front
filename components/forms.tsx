@@ -154,6 +154,8 @@ export const LoginForm = () => {
       };
       const ret = await getLoggedUser();
       setToken(ret.data.accessToken);
+      localStorage.setItem("userId", ret.data.id)
+      localStorage.setItem("userName", ret.data.userName)
       dispatch(
         setUser({ id: ret.data.id, signIn: true, userName: data.userName })
       );
