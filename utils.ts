@@ -10,6 +10,7 @@ axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 axios.interceptors.request.use(
   function (config) {
+    console.log("preparig request")
     config.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL
     // Get the access token from local storage
     const token = localStorage.getItem('accessToken');

@@ -8,14 +8,16 @@ import { Environment, OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import "@/utils"
 
 export default function Home() {
   const router = useRouter();
-  const handleRouting = () => {
+  const handleRouting = async () => {
     if (checkToken()) {
       try {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const tokenCheck = axios.get('/passport-auth/canAccess');
+        const tokenCheck = await axios.get('/passport-auth/canAccess');
+        console.log(tokenCheck.data)
         router.push('/dashboard');
         // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
       } catch (error: any) {

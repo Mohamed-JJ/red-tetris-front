@@ -3,6 +3,7 @@ import NavBar from '@/components/navBar';
 // import type { Metadata } from 'next';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import localFont from 'next/font/local';
+import AuthProvider from '../providers/authProvider';
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -26,11 +27,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`antialiased w-screen h-screen bg-main relative`}>
+    <AuthProvider>
+
+      <div className={`antialiased w-screen h-screen bg-main relative`}>
         <NavBar />
         {children}
-      </body>
-    </html>
+      </div>
+      </AuthProvider>
+
   );
 }
