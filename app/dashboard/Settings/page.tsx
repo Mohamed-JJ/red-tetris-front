@@ -9,6 +9,8 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import '@/utils';
 import ReactLoading from 'react-loading';
+import {RootState} from '@/app/state/store';
+import { useSelector } from 'react-redux';
 
 const Page = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -19,6 +21,8 @@ const Page = () => {
   };
   const notify = (message: string) => toast(message);
 
+  const usere = useSelector((state: RootState) => state.user);
+  console.log("the user is in settings:", usere)
   useEffect(() => {
     const fetchUser = async () => {
       try {

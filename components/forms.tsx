@@ -17,7 +17,6 @@ import { useRouter } from 'next/navigation';
 import '@/utils';
 import { setToken } from '@/utils';
 import { toast } from 'react-toastify';
-
 export const SignUpForm = () => {
   const { register, handleSubmit } = useForm<SignUpInput>();
   const [showPassWord, setShowPassword] = useState<boolean>(false);
@@ -129,6 +128,7 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const notify = (arg: string) => toast(arg);
+
 
   const {
     register,

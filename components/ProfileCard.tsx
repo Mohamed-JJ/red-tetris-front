@@ -1,7 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import ViewInfoPlaceHolder from './ViewInfoPlaceHolder';
+import {RootState} from '@/app/state/store';
+import { useSelector } from 'react-redux';
 
 const ProfileCard = () => {
   const user = {
@@ -14,6 +16,11 @@ const ProfileCard = () => {
     singleplayerMatches: 23,
     winrate: 15,
   };
+  const usere = useSelector((state: RootState) => state.user);
+  console.log("the user is :", usere)
+  useEffect(()=>{
+  }, [])
+
   return (
     <div className="w-[708px] h-[550px] bg-lighterblue rounded-[14px] flex flex-col items-center gap-6">
       <p className="font-jockey text-[#AAADFA] text-[30px] mt-5">
