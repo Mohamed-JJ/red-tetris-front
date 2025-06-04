@@ -1,39 +1,53 @@
-'use client';
+"use client"
 
-import { checkToken, removeToken } from '@/utils';
-import axios from 'axios';
-import { usePathname, useRouter } from 'next/navigation';
-import React, { ReactNode, useEffect, useState } from 'react';
-import '@/utils'
+import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { ReactNode, useEffect, useState } from 'react';
+import { api, checkToken, removeToken } from '@/utils';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const router = useRouter()
-  const url = usePathname()
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const router = useRouter();
+  const pathname = usePathname();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  const publicRoutes = ['/', '/auth'];
+  const isPublicRoute = publicRoutes.includes(pathname);
+
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const token = checkToken(); // Ensure this function is synchronous or awaited if asynchronous
-        if (!token) {
-          if (url === "/")
-            router.push("/auth")
-          else if (url === '/auth') {}
-          else
-            router.push('/'); // Redirect to login if no token
+        if (!checkToken()) {
+          if (!isPublicRoute) {
+            router.push('/auth');
+          }
+          setIsLoading(false);
+          return;
         }
-        const res = await axios.get('/passport-auth/canAccess');
-        setIsAuthenticated(true)
-      } catch (error: unknown) {
-        if (checkToken())
-          removeToken()
-        router.push('/'); // Redirect to the landing page
+        
+        const res = await api.get('/passport-auth/canAccess');
+        setIsAuthenticated(true);
+        setIsLoading(false);
+      } catch (error) {
+        if (checkToken()) {
+          removeToken();
+        }
+        if (!isPublicRoute) {
+          router.push('/');
+        }
+        setIsLoading(false);
       }
     };
   
-    checkAuth(); // Call the async function
-  }, [url]);
+    checkAuth();
+  }, [pathname, isPublicRoute, router]);
 
-  return isAuthenticated && <>{children}</>;
+  if (isLoading) {
+    return <LoadingSpinner text='Authenticating...' />;
+  }
+
+  return (isAuthenticated || isPublicRoute) ? <>{children}</> : null;
 };
 
 export default AuthProvider;

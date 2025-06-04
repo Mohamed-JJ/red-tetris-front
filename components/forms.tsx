@@ -12,9 +12,8 @@ import { useDispatch, useSelector } from 'react-redux';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { RootState } from '@/app/state/store';
 import { setUser } from '@/app/state/user/userSlice';
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import '@/utils';
+  import { api }from '@/utils';
 import { setToken } from '@/utils';
 import { toast } from 'react-toastify';
 export const SignUpForm = () => {
@@ -31,7 +30,7 @@ export const SignUpForm = () => {
       console.log('created user', data);
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const createdUser = await axios.post('/user', data);
+      const createdUser = await api.post('/user', data);
 
       notify('please go to the login page to login');
       // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
@@ -146,7 +145,7 @@ export const LoginForm = () => {
       console.log('the env is', process.env.NEXT_PUBLIC_BACKEND_URL);
 
       const getLoggedUser = async () => {
-        return await axios.post('/passport-auth/login', {
+        return await api.post('/passport-auth/login', {
           userName: data.userName,
           passWord: data.password,
         });
