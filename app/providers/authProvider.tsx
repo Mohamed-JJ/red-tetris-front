@@ -25,7 +25,6 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
           setIsLoading(false);
           return;
         }
-        
         const res = await api.get('/passport-auth/canAccess');
         setIsAuthenticated(true);
         setIsLoading(false);

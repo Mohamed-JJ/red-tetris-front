@@ -13,14 +13,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/app/state/store';
 import { setUser } from '@/app/state/user/userSlice';
 import { useRouter } from 'next/navigation';
-  import { api }from '@/utils';
+import { api } from '@/utils';
 import { setToken } from '@/utils';
 import { toast } from 'react-toastify';
+
 export const SignUpForm = () => {
   const { register, handleSubmit } = useForm<SignUpInput>();
   const [showPassWord, setShowPassword] = useState<boolean>(false);
   const notify = (arg: string) => toast(arg);
-
+  const forwardToLink = async (link: string) => {
+    try {
+      window.location.href = link;
+    } catch (error: unknown) {
+      console.log('error in google auth:', error);
+    }
+  };
   const ToggleShowPassWord = () => {
     setShowPassword(!showPassWord);
   };
@@ -103,7 +110,9 @@ export const SignUpForm = () => {
       </form>
       <div className="h-[2px] w-[507px] mx-auto bg-[#A59999]"></div>
       <div className="w-[420px] flex flex-col gap-7">
-        <button className="h-[54px]  bg-white rounded-[10px]">
+        <button className="h-[54px]  bg-white rounded-[10px]" 
+          onClick={() => forwardToLink(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/google/login`)}
+        >
           <div className="flex justify-center items-center gap-3">
             <FcGoogle className="h-[30px] w-[30px]" />
             <p className="text-authPlaceHolderColor font-bold text-[18px]">
@@ -111,7 +120,9 @@ export const SignUpForm = () => {
             </p>
           </div>
         </button>
-        <button className="h-[54px]  bg-[#201E1E] rounded-[10px]">
+        <button className="h-[54px]  bg-[#201E1E] rounded-[10px]"
+          onClick={() => forwardToLink(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/google/login`)}
+        >
           <div className="flex justify-center items-center gap-3">
             <Si42 className="h-[30px] w-[30px] text-white" />
             <p className="text-white font-bold text-[18px]">sign up with 42</p>
@@ -127,7 +138,13 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const notify = (arg: string) => toast(arg);
-
+  const forwardToLink = async (link: string) => {
+    try {
+      window.location.href = link;
+    } catch (error: unknown) {
+      console.log('error in google auth:', error);
+    }
+  };
   const {
     register,
     handleSubmit,
@@ -152,8 +169,8 @@ export const LoginForm = () => {
       };
       const ret = await getLoggedUser();
       setToken(ret.data.accessToken);
-      localStorage.setItem("userId", ret.data.id)
-      localStorage.setItem("userName", ret.data.userName)
+      localStorage.setItem('userId', ret.data.id);
+      localStorage.setItem('userName', ret.data.userName);
       dispatch(
         setUser({ id: ret.data.id, signIn: true, userName: data.userName })
       );
@@ -212,7 +229,10 @@ export const LoginForm = () => {
       </form>
       <div className="h-[2px] w-[507px] mx-auto bg-[#A59999] my-6"></div>
       <div className="w-[420px] flex flex-col gap-7">
-        <button className="h-[54px]  bg-white rounded-[10px]">
+        <button
+          className="h-[54px]  bg-white rounded-[10px]"
+          onClick={() => forwardToLink(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/google/login`)}
+        >
           <div className="flex justify-center items-center gap-3">
             <FcGoogle className="h-[30px] w-[30px]" />
             <p className="text-authPlaceHolderColor font-bold text-[18px]">
@@ -221,7 +241,12 @@ export const LoginForm = () => {
           </div>
         </button>
         <button className="h-[54px]  bg-[#201E1E] rounded-[10px]">
-          <div className="flex justify-center items-center gap-3">
+          <div
+            className="flex justify-center items-center gap-3"
+            onClick={() =>
+              forwardToLink(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/42/login`)
+            }
+          >
             <Si42 className="h-[30px] w-[30px] text-white" />
             <p className="text-white font-bold text-[18px]">login with 42</p>
           </div>
