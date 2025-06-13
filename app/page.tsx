@@ -16,7 +16,7 @@ export default function Home() {
     if (checkToken()) {
       try {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const tokenCheck = await axios.get('/passport-auth/canAccess');
+        const tokenCheck = await axios.get('/auth/canAccess');
         console.log(tokenCheck.data)
         router.push('/dashboard');
         // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars

@@ -18,6 +18,7 @@ const Switcher = ({
   textStyles,
   onClick,
   customWidth,
+  isLogin
 }: {
   placeHolders: string[];
   ContainerStyles: string;
@@ -26,13 +27,16 @@ const Switcher = ({
   textStyles: string;
   onClick: (arg: boolean) => void;
   customWidth?: string;
+  isLogin: boolean
 }) => {
   const bgRef = useRef<HTMLDivElement>(null);
 
-  const handleToggle = (isLogin: boolean) => {
-    onClick(isLogin);
+  const handleToggle = (islogin: boolean) => {
+    onClick(islogin);
+  };
 
-    // Animate the background color
+  useEffect(() => {
+    // Animate the background position when isLogin changes
     if (bgRef.current) {
       gsap.to(bgRef.current, {
         x: isLogin ? '108%' : '0%',
@@ -40,14 +44,8 @@ const Switcher = ({
         ease: 'power2.out',
       });
     }
-  };
+  }, [isLogin]);
 
-  useEffect(() => {
-    // Initial position of the background
-    if (bgRef.current) {
-      gsap.set(bgRef.current, { x: '0%' });
-    }
-  }, []);
   return (
     <div className={ContainerStyles}>
       <div

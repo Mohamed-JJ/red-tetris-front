@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
@@ -11,7 +11,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  
+
   const publicRoutes = ['/', '/auth'];
   const isPublicRoute = publicRoutes.includes(pathname);
 
@@ -25,10 +25,10 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
           setIsLoading(false);
           return;
         }
-        const res = await api.get('/passport-auth/canAccess');
+        const res = await api.get('/auth/canAccess');
         setIsAuthenticated(true);
         setIsLoading(false);
-      } catch (error) {
+      } catch (error: unknown) {
         if (checkToken()) {
           removeToken();
         }
@@ -38,15 +38,15 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         setIsLoading(false);
       }
     };
-  
+
     checkAuth();
   }, [pathname, isPublicRoute, router]);
 
   if (isLoading) {
-    return <LoadingSpinner text='Authenticating...' />;
+    return <LoadingSpinner text="Loading..." />;
   }
 
-  return (isAuthenticated || isPublicRoute) ? <>{children}</> : null;
+  return isAuthenticated || isPublicRoute ? <>{children}</> : null;
 };
 
 export default AuthProvider;

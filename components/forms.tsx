@@ -17,8 +17,8 @@ import { api } from '@/utils';
 import { setToken } from '@/utils';
 import { toast } from 'react-toastify';
 
-export const SignUpForm = () => {
-  const { register, handleSubmit } = useForm<SignUpInput>();
+export const SignUpForm = ({toggle}:{toggle: (arg: boolean)=>void}) => {
+  const { register, handleSubmit, reset } = useForm<SignUpInput>();
   const [showPassWord, setShowPassword] = useState<boolean>(false);
   const notify = (arg: string) => toast(arg);
   const forwardToLink = async (link: string) => {
@@ -33,13 +33,14 @@ export const SignUpForm = () => {
   };
   const onSubmit: SubmitHandler<SignUpInput> = async (data) => {
     try {
-      // console.log('the submitted data', data);
-      console.log('created user', data);
-
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      console.log("user object", data)
       const createdUser = await api.post('/user', data);
-
+      console.log(createdUser)
       notify('please go to the login page to login');
+
+      reset()
+      toggle(true)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
     } catch (error: any) {
       notify('error in creating an account');
@@ -121,7 +122,7 @@ export const SignUpForm = () => {
           </div>
         </button>
         <button className="h-[54px]  bg-[#201E1E] rounded-[10px]"
-          onClick={() => forwardToLink(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/google/login`)}
+          onClick={() => forwardToLink(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/42/login`)}
         >
           <div className="flex justify-center items-center gap-3">
             <Si42 className="h-[30px] w-[30px] text-white" />
@@ -159,13 +160,14 @@ export const LoginForm = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit: SubmitHandler<LoginInput> = async (data) => {
     try {
-      console.log('the env is', process.env.NEXT_PUBLIC_BACKEND_URL);
 
       const getLoggedUser = async () => {
-        return await api.post('/passport-auth/login', {
+        const res = await api.post('/auth/login', {
           userName: data.userName,
           passWord: data.password,
         });
+        console.log(res)
+        return res
       };
       const ret = await getLoggedUser();
       setToken(ret.data.accessToken);
