@@ -3,30 +3,32 @@
 import { CascadedCube } from '@/components/3dAssets/cube1/cascaded_cube';
 import GradientText from '@/components/GradientText';
 import ThreeDHero from '@/components/ThreeDHero';
-import { checkToken } from '@/utils';
+import { api, checkToken } from '@/utils';
 import { Environment, OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import "@/utils"
+import '@/utils';
+import Cookies from 'js-cookie';
 
 export default function Home() {
   const router = useRouter();
-  const handleRouting = async () => {
-    if (checkToken()) {
-      try {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const tokenCheck = await axios.get('/auth/canAccess');
-        console.log(tokenCheck.data)
-        router.push('/dashboard');
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
-      } catch (error: any) {
+const handleRouting = async () => {
+  if (checkToken()) {
+    try {
+      const data = Cookies.get('data');
+      if (!data) {
+        console.log("data non existant");
         router.push('/auth');
+        return; // Add this return statement
       }
-    } else {
+      router.push('/dashboard');
+    } catch (error: any) {
       router.push('/auth');
     }
-  };
+  } else {
+    router.push('/auth');
+  }
+};
   return (
     <main className="w-full h-full flex flex-row justify-between">
       <section className="ml-44 flex h-full flex-col justify-center gap-80">

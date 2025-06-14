@@ -17,7 +17,7 @@ import { api } from '@/utils';
 import { setToken } from '@/utils';
 import { toast } from 'react-toastify';
 
-export const SignUpForm = ({toggle}:{toggle: (arg: boolean)=>void}) => {
+export const SignUpForm = ({ toggle }: { toggle: (arg: boolean) => void }) => {
   const { register, handleSubmit, reset } = useForm<SignUpInput>();
   const [showPassWord, setShowPassword] = useState<boolean>(false);
   const notify = (arg: string) => toast(arg);
@@ -34,13 +34,13 @@ export const SignUpForm = ({toggle}:{toggle: (arg: boolean)=>void}) => {
   const onSubmit: SubmitHandler<SignUpInput> = async (data) => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      console.log("user object", data)
+      console.log('user object', data);
       const createdUser = await api.post('/user', data);
-      console.log(createdUser)
+      console.log(createdUser);
       notify('please go to the login page to login');
 
-      reset()
-      toggle(true)
+      reset();
+      toggle(true);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
     } catch (error: any) {
       notify('error in creating an account');
@@ -111,8 +111,13 @@ export const SignUpForm = ({toggle}:{toggle: (arg: boolean)=>void}) => {
       </form>
       <div className="h-[2px] w-[507px] mx-auto bg-[#A59999]"></div>
       <div className="w-[420px] flex flex-col gap-7">
-        <button className="h-[54px]  bg-white rounded-[10px]" 
-          onClick={() => forwardToLink(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/google/login`)}
+        <button
+          className="h-[54px]  bg-white rounded-[10px]"
+          onClick={() =>
+            forwardToLink(
+              `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/google/login`
+            )
+          }
         >
           <div className="flex justify-center items-center gap-3">
             <FcGoogle className="h-[30px] w-[30px]" />
@@ -121,8 +126,13 @@ export const SignUpForm = ({toggle}:{toggle: (arg: boolean)=>void}) => {
             </p>
           </div>
         </button>
-        <button className="h-[54px]  bg-[#201E1E] rounded-[10px]"
-          onClick={() => forwardToLink(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/42/login`)}
+        <button
+          className="h-[54px]  bg-[#201E1E] rounded-[10px]"
+          onClick={() =>
+            forwardToLink(
+              `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/42/login`
+            )
+          }
         >
           <div className="flex justify-center items-center gap-3">
             <Si42 className="h-[30px] w-[30px] text-white" />
@@ -160,25 +170,35 @@ export const LoginForm = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit: SubmitHandler<LoginInput> = async (data) => {
     try {
-
       const getLoggedUser = async () => {
-        const res = await api.post('/auth/login', {
-          userName: data.userName,
-          passWord: data.password,
-        });
-        console.log(res)
-        return res
+        const res = await api.post(
+          '/auth/login',
+          {
+            userName: data.userName,
+            passWord: data.password,
+          },
+          {
+            withCredentials: true, // <- this is required for cookies to work
+          }
+        );
+        console.log(' Link -----> ', res.data.redirectUrl);
+        // window.location.href = res.data.redirectUrl
+        // router.push('/dashboard')
+        // router.push(res.data.redirectUrl)
+        return res;
       };
       const ret = await getLoggedUser();
+      console.log('Data In here');
       setToken(ret.data.accessToken);
       localStorage.setItem('userId', ret.data.id);
       localStorage.setItem('userName', ret.data.userName);
       dispatch(
         setUser({ id: ret.data.id, signIn: true, userName: data.userName })
       );
-      if (ret.status === 200) {
-        router.push('/dashboard');
-      }
+      // if (ret.status === 200) {
+      //   router.push('/dashboard');
+      // }
+      router.push(ret.data.redirectUrl)
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       notify('error in signing in');
@@ -233,7 +253,11 @@ export const LoginForm = () => {
       <div className="w-[420px] flex flex-col gap-7">
         <button
           className="h-[54px]  bg-white rounded-[10px]"
-          onClick={() => forwardToLink(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/google/login`)}
+          onClick={() =>
+            forwardToLink(
+              `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/google/login`
+            )
+          }
         >
           <div className="flex justify-center items-center gap-3">
             <FcGoogle className="h-[30px] w-[30px]" />
@@ -246,7 +270,9 @@ export const LoginForm = () => {
           <div
             className="flex justify-center items-center gap-3"
             onClick={() =>
-              forwardToLink(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/42/login`)
+              forwardToLink(
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/42/login`
+              )
             }
           >
             <Si42 className="h-[30px] w-[30px] text-white" />

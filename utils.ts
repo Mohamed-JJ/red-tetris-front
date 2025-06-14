@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+console.log('Interceptor registered!'); 
 // Create axios instance with defaults
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
