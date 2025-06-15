@@ -9,10 +9,10 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const pathname = usePathname();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   
-  const publicRoutes = ['/', '/auth'];
+  const publicRoutes = ['/', '/auth', '/dashboard', '/dashboard/game', '/dashboard/LeaderBoard'];
   const isPublicRoute = publicRoutes.includes(pathname);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
           return;
         }
         
-        const res = await api.get('/passport-auth/canAccess');
+        // const res = await api.get('/passport-auth/canAccess');
         setIsAuthenticated(true);
         setIsLoading(false);
       } catch (error) {
@@ -47,7 +47,10 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     return <LoadingSpinner text='Authenticating...' />;
   }
 
-  return (isAuthenticated || isPublicRoute) ? <>{children}</> : null;
+  // return (isAuthenticated || isPublicRoute) ? <>{children}</> : null;
+  return (<>
+  {children}  
+  </>);
 };
 
 export default AuthProvider;
