@@ -93,7 +93,7 @@ const gameSlice = createSlice({
     },
     pauseGame: (state) => {
         state.isRunning = false;
-        // state.isPaused = !state.isPaused;
+        state.isPaused = true
     },
     unpauseGame: (state) => {
         state.isRunning = true;

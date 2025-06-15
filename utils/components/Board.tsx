@@ -27,7 +27,7 @@ export const Board: React.FC<Props> = ({ board, currentPiece, position }) => {
       className="grid"
       style={{
         display: 'grid',
-        gridTemplateColumns: `repeat(${board[0].length}, 20px)`,
+        gridTemplateColumns: `repeat(${board[0].length}, 40px)`,
         gap: '1px',
         backgroundColor: '#1e293b',
         padding: '5px'
@@ -38,8 +38,8 @@ export const Board: React.FC<Props> = ({ board, currentPiece, position }) => {
           <div
             key={`${rowIndex}-${colIndex}`}
             style={{
-              width: '20px',
-              height: '20px',
+              width: '40px',
+              height: '40px',
               backgroundColor: cell ? '#ef4444' : '#e2e8f0'
             }}
           />
