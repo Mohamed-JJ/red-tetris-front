@@ -103,9 +103,19 @@ const gameSlice = createSlice({
         state.isRunning = false;
         state.isGameOver = true;
     },
+    resetGame: (state) => {
+        state.board = createMatrix(BOARD_WIDTH, BOARD_HEIGHT);
+        state.currentPiece = inistialPiece.shape;
+        state.position = { x: Math.floor(BOARD_WIDTH / 2) - 1, y: 0 };
+        state.isRunning = true;
+        state.isGameOver = false;
+        state.score = 0;
+        state.level = 0;
+        state.linesCleared = 0;
+    },
   },
 });
 
-export const { tick, startGame, pauseGame, unpauseGame, stopGame, moveLeft, moveRight, rotatePiece, softDrop } =
+export const { tick, startGame, pauseGame, unpauseGame, stopGame, moveLeft, moveRight, rotatePiece, softDrop ,resetGame } =
   gameSlice.actions;
 export default gameSlice.reducer;

@@ -4,7 +4,7 @@ import { RootState } from '../../state/store'
 import { Board } from '@/utils/components/Board'
 import { useGameLoop } from '@/utils/hooks/useGameLoop'
 import { usePlayerControls } from '@/utils/hooks/usePlayerControls'
-import { pauseGame, unpauseGame } from '@/store/gameSlice'
+import { pauseGame, resetGame, stopGame, unpauseGame } from '@/store/gameSlice'
 
 const Game = () => {
   useGameLoop()
@@ -34,8 +34,11 @@ const Game = () => {
       </div>
     <div className="bg-slate-50">
       <Board board={board} currentPiece={currentPiece} position={position} />
-      <button className=' w-28 bg-red-500' onClick={() => { dispatch(pauseGame())}}>pause</button>
-      <button className=' w-28 bg-green-500' onClick={() => { dispatch(unpauseGame())}}>resume</button>
+      <button className={`w-28 ${gameOver ? 'bg-gray-500' : 'bg-red-500'}`} onClick={() => { dispatch(pauseGame())}}>pause</button>
+      
+      <button className={`w-28 ${gameOver ? 'bg-gray-500' : 'bg-green-500'}`} onClick={() => { dispatch(unpauseGame())}}>resume</button>
+      <button className=' w-28 bg-blue-500' onClick={() => { dispatch(resetGame())}}>restart</button>
+      <button className={`w-28 ${gameOver ? 'bg-gray-500' : 'bg-yellow-500'}`} onClick={() => { dispatch(stopGame())}}>end game</button>
     </div>
 
     </section>
