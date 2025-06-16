@@ -21,9 +21,13 @@ export async function middleware(request: NextRequest) {
 
     const parsedData = JSON.parse(rawData)
     console.log("token", parsedData.accessToken)
-    const res = await api.get('auth/canAccess', {headers: {Authorization: `bearer ${parsedData.accessToken}`}})
+    try {
+        const res = await api.get('auth/canAccess', {headers: {Authorization: `bearer ${parsedData.accessToken}`}})
+        console.log(res.data)
+    } catch (error: unknown) {
+        Router.push('/')
+    }
 
-    console.log(res.data)
     // try {
     //     const token = JSON.parse(rawData)
     //     console.log("Token object:", token)

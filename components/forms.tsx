@@ -181,10 +181,6 @@ export const LoginForm = () => {
             withCredentials: true, // <- this is required for cookies to work
           }
         );
-        console.log(' Link -----> ', res.data.redirectUrl);
-        // window.location.href = res.data.redirectUrl
-        // router.push('/dashboard')
-        // router.push(res.data.redirectUrl)
         return res;
       };
       const ret = await getLoggedUser();
