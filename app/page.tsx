@@ -12,23 +12,25 @@ import Cookies from 'js-cookie';
 
 export default function Home() {
   const router = useRouter();
-const handleRouting = async () => {
-  if (checkToken()) {
-    try {
-      const data = Cookies.get('data');
-      if (!data) {
-        console.log("data non existant");
+  const handleRouting = async () => {
+    if (checkToken()) {
+      try {
+        const data = Cookies.get('data');
+        // console.log(data)
+        if (!data) {
+          router.push('/auth');
+          return; // Add this return statement
+        } else {
+          const res = await api.get('/auth/canAccess')
+          router.push('/dashboard');
+        }
+      } catch (error: any) {
         router.push('/auth');
-        return; // Add this return statement
       }
-      router.push('/dashboard');
-    } catch (error: any) {
+    } else {
       router.push('/auth');
     }
-  } else {
-    router.push('/auth');
-  }
-};
+  };
   return (
     <main className="w-full h-full flex flex-row justify-between">
       <section className="ml-44 flex h-full flex-col justify-center gap-80">
