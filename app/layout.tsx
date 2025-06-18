@@ -4,6 +4,8 @@ import './globals.css';
 import ReduxProvider from './providers/reduxProvider';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "@radix-ui/themes/styles.css";
+
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',

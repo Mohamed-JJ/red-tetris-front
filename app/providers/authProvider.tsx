@@ -11,8 +11,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
-  
-  const publicRoutes = ['/', '/auth', '/dashboard', '/dashboard/game', '/dashboard/LeaderBoard'];
+
+  const publicRoutes = ['/', '/auth', '/dashboard', '/dashboard/game/solo', '/dashboard/game/multi', '/dashboard/LeaderBoard'];
   const isPublicRoute = publicRoutes.includes(pathname);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
           setIsLoading(false);
           return;
         }
-        
+
         // const res = await api.get('/passport-auth/canAccess');
         setIsAuthenticated(true);
         setIsLoading(false);
@@ -39,7 +39,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         setIsLoading(false);
       }
     };
-  
+
     checkAuth();
   }, [pathname, isPublicRoute, router]);
 
@@ -49,7 +49,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // return (isAuthenticated || isPublicRoute) ? <>{children}</> : null;
   return (<>
-  {children}  
+    {children}
   </>);
 };
 

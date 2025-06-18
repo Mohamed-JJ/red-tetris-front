@@ -13,9 +13,9 @@ type GameState = {
   isRunning: boolean;
   isPaused?: boolean;
   isGameOver: boolean;
-  score?: number;
-  level?: number;
-  linesCleared?: number;
+  score: number;
+  level: number;
+  linesCleared: number;
 };
 
 const BOARD_WIDTH = 10;
@@ -40,27 +40,33 @@ const gameSlice = createSlice({
   reducers: {
     tick(state) {
         console.log("tick")
+        // calculate next pos
         const nextPos = { x: state.position.x, y: state.position.y + 1 }
-
+        // generate next random piece
+        const nextPiece = getRandomTetrimino()
+        // if no collision, move piece down
         if (!checkCollision(state.board, state.currentPiece, nextPos)) {
             state.position = nextPos
             return
         }
-
+        // lock current piece into the board
         const merged = mergePiece(state.board, state.currentPiece, state.position)
+        // clear full lines and get updated board
         const { newBoard, clearedLines } = clearFullLines(merged)
         state.board = newBoard
+
+        // update score and line count
         state.linesCleared += clearedLines
-        state.score += clearedLines * 100
-
-        const nextPiece = getRandomTetrimino()
+        state.score += clearedLines * 13
+        // set initial position for next piece
         const nextPosition = { x: Math.floor(BOARD_WIDTH / 2) - 1, y: 0 }
-
+        // if new piece can't be placed, end game
         if (checkCollision(state.board, nextPiece.shape, nextPosition)) {
             state.isGameOver = true
             state.isRunning = false
             return
         }
+        // place new piece at top
         state.currentPiece = nextPiece.shape
         state.position = nextPosition
     },
