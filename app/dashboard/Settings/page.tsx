@@ -8,9 +8,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import '@/utils';
-import ReactLoading from 'react-loading';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import {RootState} from '@/app/state/store';
 import { useSelector } from 'react-redux';
+import { api } from '@/utils';
 
 const Page = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -27,7 +28,7 @@ const Page = () => {
     const fetchUser = async () => {
       try {
         // fetch the user from the backend
-        const response = await axios.get(`user/${usere.id}`);
+        const response = await api.get(`user/${usere.id}`);
         console.log(response.data); // Access the data from the response
         setUser(response.data);
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
@@ -45,7 +46,7 @@ const Page = () => {
   if (!user) {
     return (
       <div className="flex w-full h-full justify-center items-center">
-        <ReactLoading color="#fff" type="spin" height={100} width={100} />;
+        <LoadingSpinner text="loading..." />;
       </div>
     );
   }

@@ -1,8 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ShortUser } from "@/lib/types";
 
+const getFromLocalStorage = (key: string): string | null => {
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem(key);
+  }
+  return null;
+};
 
-const initialUserState: ShortUser = {id: -1, userName: undefined, signIn: false}
+const uid : number =getFromLocalStorage('uid') ? Number(getFromLocalStorage('uid')) : -1
+const uname = getFromLocalStorage('userName') || undefined
+const signIn = uid && uname ? true : false
+
+const initialUserState: ShortUser = {id: uid, userName: uname, signIn: signIn}
 
 const userSlice = createSlice({
     name: "User",

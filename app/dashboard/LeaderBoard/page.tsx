@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 import { AiTwotoneCrown } from 'react-icons/ai';
 import { toast } from 'react-toastify';
 import "@/utils"
+import { api } from '@/utils';
 
 const Page = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -18,7 +19,7 @@ const Page = () => {
   useEffect(() => {
     const fetchLeaderBoard = async () => {
       try {
-        const res = await axios.get('user/leaderBoard');
+        const res = await api.get('user/leaderBoard');
         console.log(res.data);
         setLeaderBoardList(res.data);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars

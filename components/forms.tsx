@@ -191,9 +191,6 @@ export const LoginForm = () => {
       dispatch(
         setUser({ id: ret.data.id, signIn: true, userName: data.userName })
       );
-      // if (ret.status === 200) {
-      //   router.push('/dashboard');
-      // }
       router.push(ret.data.redirectUrl)
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {

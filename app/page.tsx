@@ -19,6 +19,7 @@ export default function Home() {
         // console.log(data)
         if (!data) {
           router.push('/auth');
+          console.log("here")
           return; // Add this return statement
         } else {
           const res = await api.get('/auth/canAccess')

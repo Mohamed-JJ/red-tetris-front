@@ -35,7 +35,7 @@ const Verify = () => {
 
         // Add a small delay to show loading state (optional)
         await new Promise(resolve => setTimeout(resolve, 1500));
-
+        
         // Authentication successful, redirect to dashboard
         router.push('/dashboard');
         
