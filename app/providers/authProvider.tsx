@@ -9,10 +9,12 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const pathname = usePathname();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
   const publicRoutes = ['/', '/auth'];
+  
+  // const publicRoutes = ['/', '/auth', '/dashboard', '/dashboard/game', '/dashboard/LeaderBoard'];
   const isPublicRoute = publicRoutes.includes(pathname);
 
   useEffect(() => {

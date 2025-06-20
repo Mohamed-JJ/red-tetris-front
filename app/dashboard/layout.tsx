@@ -28,7 +28,6 @@ export default function RootLayout({
 }>) {
   return (
     <AuthProvider>
-
       <div className={`antialiased w-screen h-screen bg-main relative`}>
         <NavBar />
         {children}
