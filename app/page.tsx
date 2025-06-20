@@ -33,7 +33,7 @@ export default function Home() {
     }
   };
   return (
-    <main className="w-full h-full flex flex-row justify-between">
+    <main className="w-full h-full flex flex-row justify-between bg-main">
       <section className="ml-44 flex h-full flex-col justify-center gap-80">
         <div>
           <GradientText

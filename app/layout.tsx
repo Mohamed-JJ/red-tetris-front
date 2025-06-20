@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import ReduxProvider from "./providers/reduxProvider";
-
+import { HeroUIProvider } from "@heroui/react";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,15 +26,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ReduxProvider>
-
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased w-screen h-screen bg-main overflow-x-hidden`}
-      >
-        {children}
-        <ToastContainer position="top-right" autoClose={3000} theme="dark" />
-      </body>
-      </ReduxProvider>
+      <HeroUIProvider>
+        <ReduxProvider>
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased w-screen h-screen bg-main overflow-x-hidden`}
+          >
+            {children}
+            <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              theme="dark"
+            />
+          </body>
+        </ReduxProvider>
+      </HeroUIProvider>
     </html>
   );
 }

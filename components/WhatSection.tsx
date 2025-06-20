@@ -48,7 +48,7 @@ const WhatSection = () => {
   }, []);
 
   return (
-    <div className="bg-lighterblue h-auto flex flex-col gap-4 items-center justify-center rounded-[16px] p-4 md:p-8 lg:relative">
+    <div className="bg-lighterblue flex min-h-[475px] flex-col gap-4 items-center justify-center rounded-[16px] p-4 md:p-8 lg:relative">
       {/* <p className="font-jockey text-[#AAADFA] text-[24px] md:text-[20px] lg:text-[30px] -translate-y-2 md:-translate-y-3">
         What is Tetris and how did it come to be?
       </p> */}
