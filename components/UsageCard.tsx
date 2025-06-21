@@ -1,5 +1,4 @@
 import React from 'react';
-
 interface UsageStep {
   id: string;
   text: string;
@@ -15,7 +14,7 @@ const USAGE_STEPS: UsageStep[] = [
 const UsageCard: React.FC = () => {
   return (
     <section 
-      className="w-full max-w-[708px] h-[600px] bg-lighterblue rounded-[14px] flex flex-col items-center gap-6 p-6"
+      className="w-full max-w-[708px] h-[600px] bg-lighterblue rounded-[14px] flex flex-col items-center gap-6"
       aria-labelledby="usage-title"
     >
       <header>
@@ -27,9 +26,9 @@ const UsageCard: React.FC = () => {
         </h2>
       </header>
       
-      <main className="flex-1 flex items-center justify-center w-full">
+      <main className="flex-1 flex items-start p-16 justify-center w-full ">
         <ol 
-          className="list-disc font-jockey text-[30px] text-white space-y-4 max-w-md"
+          className="list-disc font-jockey text-[30px] text-white space-y-4"
           role="list"
         >
           {USAGE_STEPS.map((step) => (

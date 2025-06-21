@@ -1,7 +1,8 @@
-import React from 'react';
-import { ThreeDGame } from './3dAssets/ThreeDGame';
-import { Canvas } from '@react-three/fiber';
-import { Environment, OrbitControls } from '@react-three/drei';
+import React from "react";
+import { ThreeDGame } from "./3dAssets/ThreeDGame";
+import { Canvas } from "@react-three/fiber";
+import { Environment, OrbitControls } from "@react-three/drei";
+import { Accordion, AccordionItem } from "@heroui/accordion";
 
 const UpcomingChanges = () => {
   return (
@@ -19,8 +20,35 @@ const UpcomingChanges = () => {
             The next step is the integration of 3D gameplay. Enhancements
             include:
           </p>
-          <ul className="list-disc pl-5">
-            <li>
+          <Accordion className="overflow-y-scroll max-h-36 scrollable mb-5 mt-4">
+            <AccordionItem
+              key="1"
+              aria-label="Accordion 1"
+              subtitle="Press to expand"
+              title="Interactivity"
+            >
+              Interactivity of the Game Plane: We are focusing on improving the
+              interactive elements.
+            </AccordionItem>
+            <AccordionItem
+              key="2"
+              aria-label="Accordion 1"
+              subtitle="Press to expand"
+              title="3D"
+            >
+              3D Effects for Game Pieces: Game pieces will be given a
+              three-dimensional appearance.
+            </AccordionItem>
+            <AccordionItem
+              key="3"
+              aria-label="Accordion 1"
+              subtitle="Press to expand"
+              title="Realism"
+            >
+                            Realistic Backgrounds: We will incorporate immersive backgrounds
+              to further enhance the overall realism of the game.
+            </AccordionItem>
+            {/* <li>
               Interactivity of the Game Plane: We are focusing on improving the
               interactive elements.
             </li>
@@ -31,8 +59,8 @@ const UpcomingChanges = () => {
             <li>
               Realistic Backgrounds: We will incorporate immersive backgrounds
               to further enhance the overall realism of the game.
-            </li>
-          </ul>
+            </li> */}
+          </Accordion>
           <p className="">
             The changes aim to elevate the player&apos;s experience and bring
             the game to life.

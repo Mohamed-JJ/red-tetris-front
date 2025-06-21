@@ -4,6 +4,25 @@ import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import ReduxProvider from "./providers/reduxProvider";
 import HeroProvider from "./providers/heroProvider";
+import { DM_Sans, Roboto, Jockey_One } from 'next/font/google'
+
+const dmSans = DM_Sans({ 
+  subsets: ['latin'],
+  variable: '--font-dm-sans',
+})
+
+const roboto = Roboto({ 
+  weight: ['100', '300', '400', '500', '700', '900'],
+  subsets: ['latin'],
+  variable: '--font-roboto',
+})
+
+const jockeyOne = Jockey_One({ 
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-jockey',
+})
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,20 +45,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <HeroProvider>
-        <ReduxProvider>
-          <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased w-screen h-screen bg-main overflow-x-hidden`}
-          >
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${dmSans.variable} ${roboto.variable} ${jockeyOne.variable} antialiased w-screen h-screen bg-main overflow-x-hidden`}
+      >
+        <HeroProvider>
+          <ReduxProvider>
             {children}
             <ToastContainer
               position="top-right"
               autoClose={3000}
               theme="dark"
             />
-          </body>
-        </ReduxProvider>
-      </HeroProvider>
+          </ReduxProvider>
+        </HeroProvider>
+      </body>
     </html>
   );
 }
