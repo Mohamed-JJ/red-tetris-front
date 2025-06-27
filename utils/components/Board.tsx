@@ -8,7 +8,8 @@ type Props = {
 }
 
 export const Board: React.FC<Props> = ({ board, currentPiece, position }) => {
-  const displayBoard = board.map(row => [...row]) 
+  const displayBoard = board.map(row => [...row])
+
 
   for (let i = 0; i < currentPiece.length; i++) {
     for (let j = 0; j < currentPiece[i].length; j++) {
@@ -24,12 +25,11 @@ export const Board: React.FC<Props> = ({ board, currentPiece, position }) => {
 
   return (
     <div
-      className="grid"
+      className="grid gap-px bg-slate-800 p-[5px]"
       style={{
-        display: 'grid',
         gridTemplateColumns: `repeat(${board[0].length}, 40px)`,
         gap: '1px',
-        backgroundColor: '#1e293b',
+        backgroundColor: '#2a2749',
         padding: '5px'
       }}
     >
@@ -40,7 +40,7 @@ export const Board: React.FC<Props> = ({ board, currentPiece, position }) => {
             style={{
               width: '40px',
               height: '40px',
-              backgroundColor: cell ? '#ef4444' : '#e2e8f0'
+              backgroundColor: cell ? '#0b0827' : '#e2e8f0'
             }}
           />
         ))

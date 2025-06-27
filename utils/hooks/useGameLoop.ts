@@ -3,7 +3,7 @@ import { tick } from '../../store/gameSlice'
 import { useEffect } from 'react'
 import { RootState } from '@/app/state/store'
 
-export const useGameLoop = () => {
+export const useGameLoop = (speed?: number) => {
   const running = useSelector((state: RootState) => state.game.isRunning)
   const gameOver = useSelector((state: RootState) => state.game.isGameOver)
   const dispatch = useDispatch()
@@ -14,7 +14,7 @@ export const useGameLoop = () => {
     if (running && !gameOver) {
       const interval = setInterval(() => {
         dispatch(tick())
-      }, 1000)
+      }, speed || 1000)
 
       return () => clearInterval(interval)
     }

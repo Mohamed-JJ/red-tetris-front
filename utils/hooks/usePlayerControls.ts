@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import {moveLeft, moveRight, rotatePiece, softDrop} from '../../store/gameSlice'
+import {hardDrop, moveLeft, moveRight, rotatePiece, softDrop} from '../../store/gameSlice'
 
 export const usePlayerControls =() =>{
     const dispatch = useDispatch()
@@ -19,6 +19,9 @@ export const usePlayerControls =() =>{
                     break
                 case 'ArrowDown':
                     dispatch(softDrop())
+                    break
+                case ' ':
+                    dispatch(hardDrop())
                     break
             }
         }
