@@ -11,7 +11,7 @@ import GamePause from '@/utils/components/GamePause'
 import {useEffect} from 'react';
 import { TETRIMINOS } from '../../../utils/tetriminos';
 import NextPiece from '@/utils/components/NextPiece'
-
+import { socket } from '@/utils/socket'
 
 
 
@@ -21,6 +21,7 @@ import NextPiece from '@/utils/components/NextPiece'
 
 const Game = () => {
   const dispatch = useDispatch()
+  const isMulti = false
   useEffect(() => {
     dispatch(startGame());
   }, [dispatch]);
@@ -29,7 +30,29 @@ const Game = () => {
   useGameLoop()
   usePlayerControls()
 
+
+
+
+  socket.on('connect', () => {
+    console.log('connected', socket.id)
+    socket.emit('join', { name: 'Test', room: 'main' })
+  })
   
+  socket.on('playerList', data => {
+    console.log('playerList:', data)
+  })
+  
+  socket.on('joined', data => {
+    console.log('joined:', data)
+  })
+  
+
+
+
+
+
+
+
 
 
   const board = useSelector((state: RootState) => state.game.board)
