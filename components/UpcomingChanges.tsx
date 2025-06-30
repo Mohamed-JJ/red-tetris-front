@@ -25,7 +25,8 @@ const UpcomingChanges = () => {
               key="1"
               aria-label="Accordion 1"
               subtitle="Press to expand"
-              title="Interactivity"
+              title={<p className="text-white">Interactivity</p>}
+              
             >
               Interactivity of the Game Plane: We are focusing on improving the
               interactive elements.
@@ -34,7 +35,7 @@ const UpcomingChanges = () => {
               key="2"
               aria-label="Accordion 1"
               subtitle="Press to expand"
-              title="3D"
+              title={<p className="text-white">3D</p>}
             >
               3D Effects for Game Pieces: Game pieces will be given a
               three-dimensional appearance.
@@ -43,7 +44,7 @@ const UpcomingChanges = () => {
               key="3"
               aria-label="Accordion 1"
               subtitle="Press to expand"
-              title="Realism"
+              title={<p className="text-white">Realism</p>}
             >
                             Realistic Backgrounds: We will incorporate immersive backgrounds
               to further enhance the overall realism of the game.
