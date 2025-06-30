@@ -8,8 +8,12 @@ import { BiTrash } from 'react-icons/bi';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { removeToken } from '@/utils';
+import { api, removeToken } from '@/utils';
+import { RootState } from '@/app/state/store';
+import { useSelector } from 'react-redux';
 const ModifyPersonalInfo = () => {
+    const usere = useSelector((state: RootState) => state.user);
+  console.log("the user is in modify:", usere)
   const router = useRouter();
   const notify = (args: string) => toast(args);
   const [isActive, setIsActive] = useState<{
@@ -66,7 +70,7 @@ const ModifyPersonalInfo = () => {
     try {
       const updateUser = async () => {
         // replace place holder value with actual id of the user
-        const ret = await axios.patch(`user/${1}`, data);
+        const ret = await api.put(`user/${usere.id}`, data);
         console.log('updated user', ret);
         notify('updated your information successfully');
       };
@@ -82,7 +86,7 @@ const ModifyPersonalInfo = () => {
     try {
       const deleteAcc = async () => {
         // dont return the passowrd in the response to the deletee request
-        const res = await axios.delete(`/user/${1}`);
+        const res = await axios.delete(`/user/${usere.id}`);
         console.log(res.data);
       };
 
@@ -102,7 +106,7 @@ const ModifyPersonalInfo = () => {
     }
   };
   return (
-    <div className="w-[708px] h-[500px] bg-lighterblue rounded-[14px] flex flex-col items-center gap-6">
+    <div className="w-full  bg-lighterblue rounded-[14px] flex flex-col items-center gap-6">
       <p className="font-jockey text-[#AAADFA] text-[30px] mt-5">
         Personal Information
       </p>
@@ -145,7 +149,7 @@ const ModifyPersonalInfo = () => {
             <BiTrash className="w-[40px] h-[40px] hover:cursor-pointer hover:scale-125 duration-100 text-red-600" />
           </div>
         </div>
-        <div className="flex justify-between mt-10">
+        <div className="flex justify-between mt-5 mb-5">
           <button
             className="py-3 w-[150px] rounded-[16px] font-jockey text-white bg-[#787878]"
             onClick={(e) => {

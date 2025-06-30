@@ -1,17 +1,30 @@
-'use client';
-
-import DisplayPersonalInfo from '@/components/DisplayPersonalInfo';
-import ModifyPersonalInfo from '@/components/ModifyPersonalInfo';
-import Switcher from '@/components/Switcher';
-import { User } from '@/lib/types';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
-import '@/utils';
-import LoadingSpinner from '@/components/LoadingSpinner';
-import {RootState} from '@/app/state/store';
-import { useSelector } from 'react-redux';
-import { api } from '@/utils';
+"use client";
+import { AppWindowIcon, CodeIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { motion } from "motion/react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import DisplayPersonalInfo from "@/components/DisplayPersonalInfo";
+import ModifyPersonalInfo from "@/components/ModifyPersonalInfo";
+import Switcher from "@/components/Switcher";
+import { User } from "@/lib/types";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import "@/utils";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import { RootState } from "@/app/state/store";
+import { useSelector } from "react-redux";
+import { api } from "@/utils";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Page = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -23,7 +36,7 @@ const Page = () => {
   const notify = (message: string) => toast(message);
 
   const usere = useSelector((state: RootState) => state.user);
-  console.log("the user is in settings:", usere)
+  console.log("the user is in settings:", usere);
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -33,7 +46,7 @@ const Page = () => {
         setUser(response.data);
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
       } catch (error: any) {
-        notify('Error in fetching the user');
+        notify("Error in fetching the user");
       }
     };
     fetchUser(); // Call the function to fetch user data
@@ -51,19 +64,24 @@ const Page = () => {
     );
   }
   return (
-    <div className="w-full h-full flex flex-col items-center pt-16 overflow-x-hidden gap-10">
-      <div className="w-[608px] h-[70px] bg-lighterblue rounded-[14px] flex  gap-5 items-center justify-center">
-        <Switcher
-          textStyles="font-roboto text-[18px] font-semibold text-[#AAADFA] leading-5 hover:scale-105 duration-300  z-10"
-          placeHolders={['view personal info', 'modify personal info']}
-          Child1Styles={`w-[190px] h-10 rounded-[14px] flex justify-center items-center hover:cursor-pointer`}
-          Child2Styles={`ml-3 w-[190px] my-5 h-10 rounded-[14px] flex justify-center items-center hover:cursor-pointer`}
-          ContainerStyles="w-[403px] h-12 bg-main rounded-[14px] flex items-center pl-1"
-          onClick={ToggleViewMod}
-          customWidth="w-[190px]"
-        />
-      </div>
-      {!isMod ? <DisplayPersonalInfo user={user!} /> : <ModifyPersonalInfo />}
+    <div className="flex w-full h-full flex-col items-center justify-center gap-6 border-white border-2">
+      <Tabs
+        defaultValue="View"
+        className="flex w-full pb-32 items-center justify-center"
+      >
+        <div className="w-[60%] h-[70px] bg-lighterblue rounded-[14px] flex  gap-5 items-center justify-center">
+          <TabsList className="w-[60%]">
+              <TabsTrigger value="View">View</TabsTrigger>
+            <TabsTrigger value="Modify">Modify</TabsTrigger>
+          </TabsList>
+        </div>
+        <TabsContent value="View" className="w-[60%]">
+          <DisplayPersonalInfo user={user!} />
+        </TabsContent>
+        <TabsContent value="Modify" className="w-[60%]">
+          <ModifyPersonalInfo />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };

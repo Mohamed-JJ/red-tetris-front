@@ -5,7 +5,7 @@ import { User } from '@/lib/types';
 
 const DisplayPersonalInfo = ({ user }: { user: User }) => {
   return (
-    <div className="w-[708px] h-[450px] bg-lighterblue rounded-[14px] flex flex-col items-center gap-6">
+    <div className="w-full h-[450px] bg-lighterblue rounded-[14px] flex flex-col items-center gap-6">
       <p className="font-jockey text-[#AAADFA] text-[30px] mt-5">
         Personal Information
       </p>
